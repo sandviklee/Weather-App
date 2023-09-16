@@ -1,43 +1,9 @@
 import style from "../style/Weather.module.css";
 import WeatherInfo from "../components/WeatherInfo";
 import WeatherDayCourse from "../components/WeatherDayCourse";
+import TodaysDate from "../components/TodaysDate";
 import { useParams } from "react-router-dom";
 import { AiOutlineHeart, AiFillCalendar } from "react-icons/ai";
-
-const TodaysDate = () => {
-    const date: Date = new Date();
-    const days: Array<string> = new Array(
-        "Søndag",
-        "Mandag",
-        "Tirsdag",
-        "Onsdag",
-        "Torsdag",
-        "Fredag",
-        "Lørdag"
-    );
-    const months: Array<string> = new Array(
-        "Jan",
-        "Feb",
-        "Mars",
-        "Apr",
-        "Mai",
-        "Juni",
-        "Juli",
-        "Aug",
-        "Sept",
-        "Okt",
-        "Nov",
-        "Des"
-    );
-    const curDayOfWeek: string = days[date.getDay()];
-    const curMonth: string = months[date.getMonth()];
-
-    return (
-        <p>
-            {curDayOfWeek} {date.getDay()}. {curMonth}
-        </p>
-    );
-};
 
 const WeatherPage = () => {
     const { id } = useParams();
@@ -54,7 +20,14 @@ const WeatherPage = () => {
                     </div>
                     <p className={style.cityTitle}>by (Trøndelag)</p>
                 </div>
-                <hr style={{ width: "46%", marginTop: "12px" }} />
+                <hr
+                    style={{
+                        width: "48%",
+                        marginTop: "10px",
+                        marginBottom: "2px",
+                    }}
+                />
+                <div className={style.contentBackground} />
                 <div className={style.content}>
                     <div className={style.date}>
                         <AiFillCalendar />
