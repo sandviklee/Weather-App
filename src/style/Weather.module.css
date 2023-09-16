@@ -1,0 +1,75 @@
+.main {
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.titlePlacement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.title {
+    margin: 0;
+    font-family: "Lato-Black";
+    font-size: 90px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.heart {
+    margin: 0;
+    padding-top: 2px;
+    font-size: 70px;
+    color: white;
+    transition: color 0.25s;
+}
+
+.heartButton {
+    padding: 0.5em 0.1em;
+    background-color: transparent;
+    cursor: pointer;
+    outline: 0;
+    border: 1px solid transparent;
+}
+  
+.heartButton:hover .heart {
+    color: red;
+}
+
+.heartButton:focus,
+.heartButton:focus-visible {
+  outline: 0px auto -webkit-focus-ring-color;
+}
+
+.cityTitle {
+    font-family: "Lato-Light";
+    margin: 2px;
+    font-size: 35px;
+}
+
+.content {
+    position: relative;
+
+}
+
+.content > * {
+    
+}
+
+.date {
+    position: relative;
+    display: flex;
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    column-gap: 2px;
+}
+
