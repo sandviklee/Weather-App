@@ -7,7 +7,7 @@ const Router = () => {
         <BrowserRouter basename="/project1">
             <Routes>
                 <Route index element={<HomePage />} />
-                <Route path="/Weather/:id" element={<WeatherPage />} />
+                <Route path="/Weather/:id" element={<WeatherPage lat="63.43048" lon="10.39506"/>} />
             </Routes>
         </BrowserRouter>
     );
