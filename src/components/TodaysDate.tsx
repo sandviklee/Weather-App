@@ -1,36 +1,12 @@
 const TodaysDate = () => {
     const date: Date = new Date();
-    const days: Array<string> = new Array(
-        "Søndag",
-        "Mandag",
-        "Tirsdag",
-        "Onsdag",
-        "Torsdag",
-        "Fredag",
-        "Lørdag"
-    );
-    const months: Array<string> = new Array(
-        "Jan",
-        "Feb",
-        "Mars",
-        "Apr",
-        "Mai",
-        "Juni",
-        "Juli",
-        "Aug",
-        "Sept",
-        "Okt",
-        "Nov",
-        "Des"
-    );
-    const curDayOfWeek: string = days[date.getDay()];
-    const curMonth: string = months[date.getMonth()];
-
-    return (
-        <p>
-            {curDayOfWeek} {date.getDate().toString()}. {curMonth}
-        </p>
-    );
+    const curDayOfWeek: string = date.getDate().toString();
+    const curMonth: string =
+        date.getMonth().toString().length == 2
+            ? date.getMonth().toString()
+            : "0" + (date.getMonth() + 1).toString();
+    const curYear: string = date.getFullYear().toString();
+    return `${curYear}-${curMonth}-${curDayOfWeek}`;
 };
 
 export default TodaysDate;
