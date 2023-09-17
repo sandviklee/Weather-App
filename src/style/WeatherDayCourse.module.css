@@ -1,0 +1,54 @@
+.main {
+    position: relative;
+    margin: auto;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.70);
+    height: 180px;
+    width: 48%;
+    min-width: 48%;
+}
+
+.extremalTemp {
+    font-size: 16px;
+    font-family: "Lato-light";
+    margin-top: 1vh;
+}
+
+.temperatures {
+    margin-top: -1vh;
+}
+
+.weathers {
+    position: relative;
+    display: flex;
+    column-gap: 1px;
+}
+
+.container {
+    margin: 0 auto;
+    align-items: center;
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: 2px;
+}
+
+.container p {
+    margin: 0;
+    font-family: "Lato-light";
+    padding-left: 4px;
+    font-size: 20px;
+}
+
+.container sub{
+    font-size: 18px;
+}
+
+.weatherImage {
+    width: 6vh;
+}
+
+.icon {
+    position: relative;
+    font-size: 30px;
+    bottom: -0.5vh;
+}
