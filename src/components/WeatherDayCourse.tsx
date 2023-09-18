@@ -1,10 +1,10 @@
 import style from "../style/WeatherDayCourse.module.css";
 import weatherMock from "../assets/images/svg/25d.svg";
 
-interface Info {
-    extremalTemperatures: string;
-    weatherCourse: Array<string>;
-}
+// interface Info {
+//     extremalTemperatures: string;
+//     weatherCourse: Array<string>;
+// }
 
 const WeatherDayCourse = () => {
     return (

@@ -4,7 +4,7 @@ import WeatherPage from "./pages/WeatherPage";
 
 const Router = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/project1">
             <Routes>
                 <Route index element={<HomePage />} />
                 <Route path="/Weather/:id" element={<WeatherPage />} />
