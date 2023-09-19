@@ -6,8 +6,13 @@ interface WeatherProps {
     rain: string;
     wind: string;
 }
-
-const WeatherInfo = (props: WeatherProps) => {
+/**
+ * This is the Weather Info component that is implemented at Weather Page.
+ * @summary Renders a component that shows the current weather information.
+ * @param props (temperature, rain and wind)
+ * @returns Weather Info JSX Element
+ */
+const WeatherInfo = (props: WeatherProps): JSX.Element => {
     return (
         <main className={style.main}>
             <div className={style.container}>

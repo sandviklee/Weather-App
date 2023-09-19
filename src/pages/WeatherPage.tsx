@@ -12,8 +12,13 @@ interface WeatherProps {
     lat: string;
     lon: string;
 }
-
-const WeatherPage = (props: WeatherProps) => {
+/**
+ * This is the Weather page component which is depends on longitude and latitude.
+ * @summary Will render a page that shows weather information from todays date.
+ * @param props (latitude and longitude)
+ * @returns Weather Page JSX Element
+ */
+const WeatherPage = (props: WeatherProps): JSX.Element => {
     const { id } = useParams();
     const [weather, setWeather] = useState(null);
     const [temperature, setTemperature] = useState("0");
@@ -28,11 +33,18 @@ const WeatherPage = (props: WeatherProps) => {
     const time: string = new Date().toJSON().split("T")[1];
 
     const { data } = useQuery({
-        queryKey: ["repoData"],
+        /**
+         * @summary TanStack Query, fetches API from MET to data
+         */
+        queryKey: [""],
         queryFn: () => fetch(endpoint).then((res) => res.json()),
     });
 
     const filterTodaysWeatherData: any = (data: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Filtered weather data based on todays date
+         */
         return data["properties"]["timeseries"].filter(
             (value: { [x: string]: string }) =>
                 value["time"].split("T")[0] == TodaysDate()
@@ -40,6 +52,10 @@ const WeatherPage = (props: WeatherProps) => {
     };
 
     const sortWeatherByTemperature = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Filtered weather data based on highest to lowest temperature
+         */
         let newWeather = Object.create(weather);
         return newWeather.sort((a: any, b: any) => {
             return (
@@ -50,6 +66,10 @@ const WeatherPage = (props: WeatherProps) => {
     };
 
     const filterWeatherToCurrentTime: any = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Filtered weather data based on the current hour
+         */
         return weather.filter(
             (value: { [x: string]: any }) =>
                 value["time"].split("T")[1].slice(0, -1).split(":")[0] ==
@@ -58,24 +78,40 @@ const WeatherPage = (props: WeatherProps) => {
     };
 
     const getCurrentTemperature = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Temperature data at current hour
+         */
         return filterWeatherToCurrentTime(weather)[0]["data"]["instant"][
             "details"
         ]["air_temperature"];
     };
 
-    const getPrecipitation6H = (weather: any) => {
+    const getPrecipitation1H = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Precipitation data over 1 hour from current hour
+         */
         return filterWeatherToCurrentTime(weather)[0]["data"]["next_1_hours"][
             "details"
         ]["precipitation_amount"];
     };
 
     const getCurrentWind = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Wind data from current hour
+         */
         return filterWeatherToCurrentTime(weather)[0]["data"]["instant"][
             "details"
         ]["wind_speed"];
     };
 
     const getExtremalTemperatures = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Both Max and Min temperatures from current day
+         */
         return new Array(
             sortWeatherByTemperature(weather)[0]["data"]["instant"]["details"][
                 "air_temperature"
@@ -87,10 +123,19 @@ const WeatherPage = (props: WeatherProps) => {
     };
 
     const getWeatherSymbol = (weather: any, hour: number) => {
+        /**
+         * @param weather Weather data from MET
+         * @param hour    Given hour to get symbol from
+         * @returns       Symbol from given hour 
+         */
         return weather[hour]["data"]["next_1_hours"]["summary"]["symbol_code"];
     };
 
     const getDayCourse = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Array of the course of symbols from current day
+         */
         return new Array(
             weather.length > 17 ? getWeatherSymbol(weather, 6) : "no_weather",
             weather.length > 13
@@ -117,7 +162,7 @@ const WeatherPage = (props: WeatherProps) => {
             return;
         }
         setTemperature(getCurrentTemperature(weather));
-        setPrecipitation(getPrecipitation6H(weather));
+        setPrecipitation(getPrecipitation1H(weather));
         setWind(getCurrentWind(weather));
         setExtremalTemp(getExtremalTemperatures(weather));
         setDayCourse(getDayCourse(weather));
