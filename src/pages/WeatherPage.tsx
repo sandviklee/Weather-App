@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import style from "../style/Weather.module.css";
-import WeatherInfo from "../components/WeatherInfo";
-import WeatherDayCourse from "../components/WeatherDayCourse";
-import TodaysDate from "../components/TodaysDate";
-import TodaysDateComponent from "../components/TodaysDateComponent";
+import WeatherInfo from "../components/WeatherPage/WeatherInfo";
+import WeatherDayCourse from "../components/WeatherPage/WeatherDayCourse";
+import TodaysDate from "../components/Date/TodaysDate";
+import TodaysDateComponent from "../components/Date/TodaysDateComponent";
 import { AiOutlineHeart, AiFillCalendar } from "react-icons/ai";
 
 interface WeatherProps {
@@ -19,8 +19,10 @@ const WeatherPage = (props: WeatherProps) => {
     const [temperature, setTemperature] = useState("0");
     const [precipitation, setPrecipitation] = useState("0");
     const [wind, setWind] = useState("0");
-    const [extremalTemp, setExtremalTemp] = useState(Array<string>);
-    const [dayCourse, setDayCourse] = useState(Array<string>);
+    const [extremalTemp, setExtremalTemp] = useState(Array("0", "0"));
+    const [dayCourse, setDayCourse] = useState(
+        Array("no_weather", "no_weather", "no_weather", "no_weather")
+    );
 
     const endpoint: string = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${props.lat}&lon=${props.lon}`;
     const time: string = new Date().toJSON().split("T")[1];
