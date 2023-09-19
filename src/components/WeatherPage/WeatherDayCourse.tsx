@@ -1,4 +1,4 @@
-import style from "../style/WeatherDayCourse.module.css";
+import style from "./WeatherDayCourse.module.css";
 
 interface DayCourseProps {
     extremalTemperatures: Array<string>;
@@ -21,7 +21,7 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <img
                             className={style.weatherImage}
                             src={`../src/assets/images/svg/${props.weatherCourse[0]}.svg`}
-                            alt="Weather"
+                            alt="Morning Weather"
                         />
                     </div>
                 </div>
@@ -31,7 +31,7 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <img
                             className={style.weatherImage}
                             src={`../src/assets/images/svg/${props.weatherCourse[1]}.svg`}
-                            alt="Weather"
+                            alt="Noon Weather"
                         />
                     </div>
                 </div>
@@ -41,7 +41,7 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <img
                             className={style.weatherImage}
                             src={`../src/assets/images/svg/${props.weatherCourse[2]}.svg`}
-                            alt="Weather"
+                            alt="Afternoon Weather"
                         />
                     </div>
                 </div>
@@ -51,7 +51,7 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <img
                             className={style.weatherImage}
                             src={`../src/assets/images/svg/${props.weatherCourse[3]}.svg`}
-                            alt="Weather"
+                            alt="Night Weather"
                         />
                     </div>
                 </div>

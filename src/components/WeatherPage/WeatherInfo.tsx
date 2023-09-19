@@ -1,4 +1,4 @@
-import style from "../style/WeatherInfo.module.css";
+import style from "./WeatherInfo.module.css";
 import { BsThermometerHalf, BsUmbrella, BsWind } from "react-icons/bs";
 
 interface WeatherProps {
