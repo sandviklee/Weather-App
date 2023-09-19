@@ -1,16 +1,18 @@
 import style from "../style/WeatherDayCourse.module.css";
-import weatherMock from "../assets/images/svg/25d.svg";
 
-interface Info {
-    extremalTemperatures: string;
+interface DayCourseProps {
+    extremalTemperatures: Array<string>;
     weatherCourse: Array<string>;
 }
 
-const WeatherDayCourse = () => {
+const WeatherDayCourse = (props: DayCourseProps) => {
     return (
         <main className={style.main}>
             <p className={style.extremalTemp}>Maks/Min Temperatur</p>
-            <p className={style.temperatures}>11C° / 8C°</p>
+            <p className={style.temperatures}>
+                {props.extremalTemperatures[0]}C° /{" "}
+                {props.extremalTemperatures[1]}C°
+            </p>
 
             <div className={style.weathers}>
                 <div className={style.container}>
@@ -18,7 +20,7 @@ const WeatherDayCourse = () => {
                         <p>NATT</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
+                            src={`../src/assets/images/svg/${props.weatherCourse[0]}.svg`}
                             alt="Weather"
                         />
                     </div>
@@ -28,7 +30,7 @@ const WeatherDayCourse = () => {
                         <p>MORGEN</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
+                            src={`../src/assets/images/svg/${props.weatherCourse[1]}.svg`}
                             alt="Weather"
                         />
                     </div>
@@ -38,7 +40,7 @@ const WeatherDayCourse = () => {
                         <p>AFTEN</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
+                            src={`../src/assets/images/svg/${props.weatherCourse[2]}.svg`}
                             alt="Weather"
                         />
                     </div>
@@ -48,7 +50,7 @@ const WeatherDayCourse = () => {
                         <p>KVELD</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
+                            src={`../src/assets/images/svg/${props.weatherCourse[3]}.svg`}
                             alt="Weather"
                         />
                     </div>

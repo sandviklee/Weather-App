@@ -1,13 +1,13 @@
 import style from "../style/WeatherInfo.module.css";
 import { BsThermometerHalf, BsUmbrella, BsWind } from "react-icons/bs";
 
-interface Info {
+interface WeatherProps {
     temperature: string;
     rain: string;
     wind: string;
 }
 
-const WeatherInfo = (props: Info) => {
+const WeatherInfo = (props: WeatherProps) => {
     return (
         <main className={style.main}>
             <div className={style.container}>
