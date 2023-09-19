@@ -1,4 +1,4 @@
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import style from "../style/Weather.module.css";
@@ -8,38 +8,118 @@ import TodaysDate from "../components/TodaysDate";
 import TodaysDateComponent from "../components/TodaysDateComponent";
 import { AiOutlineHeart, AiFillCalendar } from "react-icons/ai";
 
-interface WeatherParameters {
+interface WeatherProps {
     lat: string;
     lon: string;
 }
 
-const WeatherPage = (props: WeatherParameters) => {
+const WeatherPage = (props: WeatherProps) => {
     const { id } = useParams();
     const [weather, setWeather] = useState(null);
-    const endpoint: string = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${props.lat}&lon=${props.lon}`;
+    const [temperature, setTemperature] = useState("0");
+    const [precipitation, setPrecipitation] = useState("0");
+    const [wind, setWind] = useState("0");
+    const [extremalTemp, setExtremalTemp] = useState(Array<string>);
+    const [dayCourse, setDayCourse] = useState(Array<string>);
 
-    const filterWeatherData: any = (data: any) => {
+    const endpoint: string = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${props.lat}&lon=${props.lon}`;
+    const time: string = new Date().toJSON().split("T")[1];
+
+    const { data } = useQuery({
+        queryKey: ["repoData"],
+        queryFn: () => fetch(endpoint).then((res) => res.json()),
+    });
+
+    const filterTodaysWeatherData: any = (data: any) => {
+        return data["properties"]["timeseries"].filter(
+            (value: { [x: string]: string }) =>
+                value["time"].split("T")[0] == TodaysDate()
+        );
+    };
+
+    const sortWeatherByTemperature = (weather: any) => {
+        let newWeather = Object.create(weather);
+        return newWeather.sort((a: any, b: any) => {
+            return (
+                parseFloat(b["data"]["instant"]["details"]["air_temperature"]) -
+                parseFloat(a["data"]["instant"]["details"]["air_temperature"])
+            );
+        });
+    };
+
+    const filterWeatherToCurrentTime: any = (weather: any) => {
+        return weather.filter(
+            (value: { [x: string]: any }) =>
+                value["time"].split("T")[1].slice(0, -1).split(":")[0] ==
+                time.split(":")[0]
+        );
+    };
+
+    const getCurrentTemperature = (weather: any) => {
+        return filterWeatherToCurrentTime(weather)[0]["data"]["instant"][
+            "details"
+        ]["air_temperature"];
+    };
+
+    const getPrecipitation6H = (weather: any) => {
+        return filterWeatherToCurrentTime(weather)[0]["data"]["next_1_hours"][
+            "details"
+        ]["precipitation_amount"];
+    };
+
+    const getCurrentWind = (weather: any) => {
+        return filterWeatherToCurrentTime(weather)[0]["data"]["instant"][
+            "details"
+        ]["wind_speed"];
+    };
+
+    const getExtremalTemperatures = (weather: any) => {
         return new Array(
-            data["properties"]["timeseries"].filter(
-                (values: { [x: string]: string }) =>
-                    values["time"].split("T")[0] == TodaysDate()
-            )
+            sortWeatherByTemperature(weather)[0]["data"]["instant"]["details"][
+                "air_temperature"
+            ],
+            sortWeatherByTemperature(weather)[weather.length - 1]["data"][
+                "instant"
+            ]["details"]["air_temperature"]
+        );
+    };
+
+    const getWeatherSymbol = (weather: any, hour: number) => {
+        return weather[hour]["data"]["next_1_hours"]["summary"]["symbol_code"];
+    };
+
+    const getDayCourse = (weather: any) => {
+        return new Array(
+            weather.length > 17 ? getWeatherSymbol(weather, 6) : "no_weather",
+            weather.length > 13
+                ? getWeatherSymbol(weather, 10 - (23 - weather.length))
+                : "no_weather",
+            weather.length > 7
+                ? getWeatherSymbol(weather, 16 - (23 - weather.length))
+                : "no_weather",
+            weather.length > 2
+                ? getWeatherSymbol(weather, 21 - (23 - weather.length))
+                : "no_weather"
         );
     };
 
     useEffect(() => {
-        axios.get(endpoint).then((response) => {
-            setWeather(
-                response.data !== null ? filterWeatherData(response.data) : null
-            );
-        });
-    }, []);
+        if (data == null) {
+            return;
+        }
+        setWeather(filterTodaysWeatherData(data));
+    }, [data]);
 
     useEffect(() => {
-        console.log(weather);
+        if (weather == null) {
+            return;
+        }
+        setTemperature(getCurrentTemperature(weather));
+        setPrecipitation(getPrecipitation6H(weather));
+        setWind(getCurrentWind(weather));
+        setExtremalTemp(getExtremalTemperatures(weather));
+        setDayCourse(getDayCourse(weather));
     }, [weather]);
-
-    if (!weather) return null;
 
     return (
         <main className={style.main}>
@@ -66,8 +146,15 @@ const WeatherPage = (props: WeatherParameters) => {
                         <AiFillCalendar />
                         <TodaysDateComponent />
                     </div>
-                    <WeatherInfo temperature="11" rain="8" wind="2" />
-                    <WeatherDayCourse />
+                    <WeatherInfo
+                        temperature={temperature}
+                        rain={precipitation}
+                        wind={wind}
+                    />
+                    <WeatherDayCourse
+                        extremalTemperatures={extremalTemp}
+                        weatherCourse={dayCourse}
+                    />
                 </div>
             </div>
         </main>
