@@ -1,0 +1,46 @@
+.container {
+    background-color: white;
+    width: 170px;
+    height: 170px;
+    color: black;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.location {
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.temperatures {
+    display: flex;
+    gap: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 400;   
+    margin-top: -5px;
+}
+
+.night_temperature {
+    color: rgb(146, 146, 146);
+}
+
+.selected {
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 100%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
