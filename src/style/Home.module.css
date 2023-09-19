@@ -1,0 +1,130 @@
+.temperature {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.current_weather {
+    margin-left: -10px;
+    margin-top: 50px;
+}
+
+.location {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: -8px;
+}
+
+.day_time {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
+    padding-bottom: 20px;
+    border: 0px;
+    border-bottom: 2px;
+    border-color: black;
+    border-style: solid;
+}
+
+.extra_info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.extra_info h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: black;
+    padding: 0px;
+    margin: 0px;
+}
+
+.time {
+    color: var(--color-gray);
+}
+
+.favorites {
+    padding: 40px;
+    width: 100%;
+}
+
+.favorites h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    height: fit-content;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.sidebar {
+    border: 0px;
+    border-bottom: 3px; 
+    background-color: white;
+    width: 320px;
+    padding: 30px;
+}
+
+.main {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color-gray-light);
+    min-height: 100vh;
+}
+
+.link_container {
+    margin-top: 60px;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+}
+
+.link p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.link2 {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+.link2 p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+}

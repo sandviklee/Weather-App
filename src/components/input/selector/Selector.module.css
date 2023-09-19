@@ -1,0 +1,26 @@
+.button_group {
+    display: flex;
+}
+
+.hidden_radio {
+    display: none;
+}
+  
+.button_label {
+    padding: 8px 18px;
+    border: 0px;
+    border-bottom: 2px;
+    border-color: transparent;
+    border-style: solid;
+    margin-right: 5px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+  
+.hidden_radio:checked + .button_label {
+    border-bottom: 2px;
+    border-color: black;
+    border-style: solid;
+    font-weight: 600;
+}
