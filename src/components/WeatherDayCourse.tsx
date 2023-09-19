@@ -1,12 +1,12 @@
 import style from "../style/WeatherDayCourse.module.css";
 import weatherMock from "../assets/images/svg/25d.svg";
 
-// interface Info {
-//     extremalTemperatures: string;
-//     weatherCourse: Array<string>;
-// }
+interface DayCourseProps {
+    extremalTemperatures: Array<string>;
+    weatherCourse: Array<string>;
+}
 
-const WeatherDayCourse = () => {
+const WeatherDayCourse = (props: DayCourseProps) => {
     return (
         <main className={style.main}>
             <p className={style.extremalTemp}>Maks/Min Temperatur</p>
