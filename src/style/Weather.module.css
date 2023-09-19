@@ -61,6 +61,7 @@
 }
 
 .date {
+    padding-top: 2vh;
     position: relative;
     display: flex;
     margin: auto;
@@ -69,6 +70,11 @@
     justify-content: center;
     font-size: 28px;
     column-gap: 2px;
+}
+
+.date p {
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .content {

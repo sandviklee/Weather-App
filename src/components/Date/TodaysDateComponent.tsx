@@ -1,4 +1,4 @@
-const TodaysDate = () => {
+const TodaysDateComponent = () => {
     const date: Date = new Date();
     const days: Array<string> = new Array(
         "Søndag",
@@ -23,14 +23,16 @@ const TodaysDate = () => {
         "Nov",
         "Des"
     );
+
     const curDayOfWeek: string = days[date.getDay()];
     const curMonth: string = months[date.getMonth()];
+    const curDayDate: string = date.getDate().toString();
 
     return (
         <p>
-            {curDayOfWeek} {date.getDate().toString()}. {curMonth}
+            {curDayOfWeek} {curDayDate}. {curMonth}
         </p>
     );
 };
 
-export default TodaysDate;
+export default TodaysDateComponent;
