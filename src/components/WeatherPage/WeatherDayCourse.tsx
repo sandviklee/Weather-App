@@ -1,16 +1,24 @@
-import style from "../style/WeatherDayCourse.module.css";
-import weatherMock from "../assets/images/svg/25d.svg";
+import style from "./WeatherDayCourse.module.css";
 
 interface DayCourseProps {
     extremalTemperatures: Array<string>;
     weatherCourse: Array<string>;
 }
 
-const WeatherDayCourse = (props: DayCourseProps) => {
+/**
+ * This is the Course of day Weather Information component.
+ * @summary Renders a component with information about the course of day
+ * @param props (extrmalTemperatures, weatherCourse)
+ * @returns Weather Course of Day JSX Element
+ */
+const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
     return (
         <main className={style.main}>
             <p className={style.extremalTemp}>Maks/Min Temperatur</p>
-            <p className={style.temperatures}>11C° / 8C°</p>
+            <p className={style.temperatures}>
+                {props.extremalTemperatures[0]}C° /{" "}
+                {props.extremalTemperatures[1]}C°
+            </p>
 
             <div className={style.weathers}>
                 <div className={style.container}>
@@ -18,8 +26,8 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <p>NATT</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
-                            alt="Weather"
+                            src={`../src/assets/images/svg/${props.weatherCourse[0]}.svg`}
+                            alt="Morning Weather"
                         />
                     </div>
                 </div>
@@ -28,8 +36,8 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <p>MORGEN</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
-                            alt="Weather"
+                            src={`../src/assets/images/svg/${props.weatherCourse[1]}.svg`}
+                            alt="Noon Weather"
                         />
                     </div>
                 </div>
@@ -38,8 +46,8 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <p>AFTEN</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
-                            alt="Weather"
+                            src={`../src/assets/images/svg/${props.weatherCourse[2]}.svg`}
+                            alt="Afternoon Weather"
                         />
                     </div>
                 </div>
@@ -48,8 +56,8 @@ const WeatherDayCourse = (props: DayCourseProps) => {
                         <p>KVELD</p>
                         <img
                             className={style.weatherImage}
-                            src={weatherMock}
-                            alt="Weather"
+                            src={`../src/assets/images/svg/${props.weatherCourse[3]}.svg`}
+                            alt="Night Weather"
                         />
                     </div>
                 </div>

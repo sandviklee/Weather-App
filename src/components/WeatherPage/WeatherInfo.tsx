@@ -1,13 +1,18 @@
-import style from "../style/WeatherInfo.module.css";
+import style from "./WeatherInfo.module.css";
 import { BsThermometerHalf, BsUmbrella, BsWind } from "react-icons/bs";
 
-interface Info {
+interface WeatherProps {
     temperature: string;
     rain: string;
     wind: string;
 }
-
-const WeatherInfo = (props: Info) => {
+/**
+ * This is the Weather Info component that is implemented at Weather Page.
+ * @summary Renders a component that shows the current weather information.
+ * @param props (temperature, rain and wind)
+ * @returns Weather Info JSX Element
+ */
+const WeatherInfo = (props: WeatherProps): JSX.Element => {
     return (
         <main className={style.main}>
             <div className={style.container}>
