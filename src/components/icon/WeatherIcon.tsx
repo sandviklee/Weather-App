@@ -5,9 +5,9 @@ interface WeatherIconProps {
 }
 
 const WeatherIcon = ({ dayOrNight, status, size = 24 }: WeatherIconProps) => {
-  let iconSrc = `public/weather-icons/wi-${dayOrNight}-${status}.svg`;
+  let iconSrc = `../public/weather-icons/wi-${dayOrNight}-${status}.svg`;
   if (dayOrNight == "neutral") {
-    iconSrc = `public/weather-icons/wi-${status}.svg`;
+    iconSrc = `../public/weather-icons/wi-${status}.svg`;
   }
 
   return (
