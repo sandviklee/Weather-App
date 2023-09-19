@@ -5,13 +5,14 @@
     background-position: center 0;
     background-repeat: no-repeat;
     background-size: 150%;
+    color: white;
 }
 
 .container {
     overflow: hidden;
     position: relative;
     text-align: center;
-    padding-top: 16vh;
+    padding-top: 20vh;
     
 }
 
@@ -25,14 +26,22 @@
 .title {
     margin: 0;
     font-family: "Lato-Black";
-    font-size: 80px;
+    font-size: 70px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.arrow {
+    margin: 0;
+    padding-top: 8px;
+    font-size: 40px;
+    color: white;
+    transition: color 0.25s;
 }
 
 .heart {
     margin: 0;
-    padding-top: 2px;
-    font-size: 70px;
+    padding-top: 8px;
+    font-size: 55px;
     color: white;
     transition: color 0.25s;
 }

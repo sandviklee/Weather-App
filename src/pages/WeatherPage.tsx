@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import style from "../style/Weather.module.css";
 import WeatherInfo from "../components/WeatherPage/WeatherInfo";
 import WeatherDayCourse from "../components/WeatherPage/WeatherDayCourse";
 import TodaysDate from "../components/Date/TodaysDate";
 import TodaysDateComponent from "../components/Date/TodaysDateComponent";
-import { AiOutlineHeart, AiFillCalendar } from "react-icons/ai";
+import {
+    AiOutlineHeart,
+    AiFillCalendar,
+    AiOutlineArrowLeft,
+} from "react-icons/ai";
 
 interface WeatherProps {
     lat: string;
@@ -126,7 +130,7 @@ const WeatherPage = (props: WeatherProps): JSX.Element => {
         /**
          * @param weather Weather data from MET
          * @param hour    Given hour to get symbol from
-         * @returns       Symbol from given hour 
+         * @returns       Symbol from given hour
          */
         return weather[hour]["data"]["next_1_hours"]["summary"]["symbol_code"];
     };
@@ -173,12 +177,14 @@ const WeatherPage = (props: WeatherProps): JSX.Element => {
             <div className={style.container}>
                 <div className={style.titleContent}>
                     <div className={style.titlePlacement}>
+                        <Link to="/">
+                            <AiOutlineArrowLeft className={style.arrow} />
+                        </Link>
                         <p className={style.title}>{id?.toUpperCase()}</p>
                         <button className={style.heartButton}>
                             <AiOutlineHeart className={style.heart} />
                         </button>
                     </div>
-                    <p className={style.cityTitle}>by (Trøndelag)</p>
                 </div>
                 <hr
                     style={{
