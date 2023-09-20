@@ -152,12 +152,15 @@
 .input {
     position: absolute;
     top: 50px;
-    left: 23px;
+    left: 2vw;
     border-radius: 8px;
     z-index: 100;
     background-color: white;
     overflow: hidden;
-    padding: 16px 24px;
+    padding: 1vw 2vw;
+    width: 220px;
+    border: solid 3px black;
+    border-radius: 15px;
 }
 
 .divider {
@@ -205,5 +208,44 @@
 @media only screen and (max-width: 750px) {
     .sidebar {
         display: none;
+    }
+
+    .input {
+        position: relative;
+        width: 90vw;
+    }
+
+    .favorites h3 {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        margin-top: 7vh;
+        margin-bottom: 20px;
+    }
+
+    .card_container {
+        justify-content: center;
+    }
+
+    .places {
+        margin-top: 4px;
+    }
+
+    .place_search {
+        font-size: 3vw;
+    }
+
+    .place_search .extra {
+        margin-right: 4vw;
+    }
+
+    .divider {
+        margin-top: 1vw;
+    }
+}
+
+@media only screen and (max-height: 650px) {
+    .favorites h3 {
+        margin-top: 12vw;
     }
 }

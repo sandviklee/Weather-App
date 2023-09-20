@@ -166,9 +166,9 @@ const HomePage = () => {
         style={
           fieldValue.length > 0
             ? {
-                top: "200px",
+                top: "10vw",
                 width: "80%",
-                left: "10%",
+                left: "8%",
               }
             : { padding: "0px" }
         }

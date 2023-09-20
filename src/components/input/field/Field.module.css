@@ -28,3 +28,18 @@
 .input:focus {
     outline: none;
 }
+
+@media only screen and (max-width: 750px) {
+    .input {
+        font-size: 3vw;
+    }
+
+    .field img {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .input {
+        height: 30px;
+    }
+}
