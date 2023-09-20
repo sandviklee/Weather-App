@@ -28,7 +28,7 @@ interface WeatherIconProps {
 }
 
 const WeatherIcon = ({ status, size = 24 }: WeatherIconProps) => {
-    let iconSrc = `/yr-icons/${status}.svg`;
+    let iconSrc = `/project1/yr-icons/${status}.svg`;
 
     return (
         <img
