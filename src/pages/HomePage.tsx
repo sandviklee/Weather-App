@@ -7,6 +7,7 @@ import WeatherIcon from "../components/icon/WeatherIcon";
 import Icon from "../components/icon/Icon";
 import Selector from "../components/input/selector/Selector";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import Options from "../components/input/selector/Options";
 
 interface PlaceSearchInterface {
   name: string;
@@ -119,14 +120,20 @@ const HomePage = () => {
     favorites[0]
   );
 
+  const [selectedCounty, setSelectedCounty] = useState<string | undefined>(
+    localStorage.getItem("prefferedCountySelection") as string
+  );
+
   const { data, refetch } = useQuery({
     /**
      * @summary TanStack Query, fetches API from MET to data
      */
-    queryKey: ["search", fieldValue],
+    queryKey: ["search", fieldValue, selectedCounty],
     queryFn: () =>
       fetch(
-        `https://ws.geonorge.no/stedsnavn/v1/sted?sok=${fieldValue}&fuzzy=true&utkoordsys=4258&treffPerSide=20&side=1`
+        `https://ws.geonorge.no/stedsnavn/v1/sted?sok=${fieldValue}&fuzzy=true${
+          selectedCounty ? "&fylkesnavn=" + selectedCounty : ""
+        }&utkoordsys=4258&treffPerSide=20&side=1`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -173,6 +180,20 @@ const HomePage = () => {
     console.log(fieldValue);
   }, [fieldValue, refetch]);
 
+  const counties = [
+    "Troms og Finnmark",
+    "Nordland",
+    "Trøndelag",
+    "Møre og Romsdal",
+    "Vestland",
+    "Rogaland",
+    "Agder",
+    "Vestfold og Telemark",
+    "Viken",
+    "Oslo",
+    "Innlandet",
+  ];
+
   return (
     <>
       {fieldValue.length > 0 && (
@@ -189,10 +210,11 @@ const HomePage = () => {
                 width: "80%",
                 left: "8%",
               }
-            : { paddingLeft: "1vw",
+            : {
+                paddingLeft: "1vw",
                 paddingRight: "0",
                 paddingTop: "0",
-                paddingBottom: "0"
+                paddingBottom: "0",
               }
         }
       >
@@ -202,6 +224,24 @@ const HomePage = () => {
           value={fieldValue}
           setValue={setFieldValue}
         />
+        {fieldValue.length > 0 && (
+          <div className={styles.options}>
+            <Options
+              options={counties}
+              label="Fylke"
+              value={selectedCounty}
+              setValue={setSelectedCounty}
+            />
+            <p
+              className={styles.reset}
+              onClick={() => {
+                setSelectedCounty(undefined);
+              }}
+            >
+              Tilbakestill filtre
+            </p>
+          </div>
+        )}
         {fieldValue.length > 0 && (
           <>
             <div className={styles.divider}></div>

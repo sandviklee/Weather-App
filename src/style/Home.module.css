@@ -153,14 +153,14 @@
     position: absolute;
     top: 50px;
     left: 2vw;
-    border-radius: 8px;
     z-index: 100;
     background-color: white;
     overflow: hidden;
     padding: 1vw 2vw;
     width: 220px;
-    border: solid 3px black;
-    border-radius: 15px;
+    border: 0px;
+    border-bottom: solid 3px var(--color-gray);
+    border-radius: 2px;
 }
 
 .divider {
@@ -205,6 +205,21 @@
     gap: 10px;
     align-items: center;
     margin-right: 40px;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.reset {
+    color: rgb(120, 120, 120);
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 @media only screen and (max-width: 750px) {
