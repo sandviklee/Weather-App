@@ -1,4 +1,4 @@
-export type IconType = "search" | "arrow-right";
+export type IconType = "search" | "arrow-right" | "map-pin";
 
 interface IconProps {
   icon: IconType;
