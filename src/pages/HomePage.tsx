@@ -6,7 +6,7 @@ import Field from "../components/input/field/Field";
 import WeatherIcon from "../components/icon/WeatherIcon";
 import Icon from "../components/icon/Icon";
 import Selector from "../components/input/selector/Selector";
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Options from "../components/input/selector/Options";
 
 interface PlaceSearchInterface {
@@ -62,6 +62,7 @@ const PlaceSearch = ({
 const HomePage = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [fieldValue, setFieldValue] = useState<string>("");
+    const [url, setUrl] = useState<string>("");
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -116,18 +117,13 @@ const HomePage = () => {
 
     const dag = dagNavn[currentDate.getDay()];
 
-    // const favorites_test = [
-    //     { name: "Trondheim", lat: "63.43048", lon: "10.39506" },
-    //     { name: "Oslo", lat: "59.91273", lon: "10.74609" },
-    // ];
+    //const favorites_test: any = [];
 
-    // localStorage.setItem("favorites", JSON.stringify(favorites_test));
+    //localStorage.setItem("favorites", JSON.stringify(favorites_test));
 
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
-    const [currentLocation, setCurrentLocation] = useState<string | null>(
-        favorites[0]["name"] || ""
-    );
+    const [currentLocation, setCurrentLocation] = useState<string | null>();
 
     const [selectedCounty, setSelectedCounty] = useState<string | undefined>(
         localStorage.getItem("prefferedCountySelection") as string
@@ -192,6 +188,23 @@ const HomePage = () => {
         console.log(data);
         console.log(fieldValue);
     }, [fieldValue, refetch]);
+
+    useEffect(() => {
+        if (currentLocation == null) {
+            return;
+        }
+        setUrl(
+            `/location/${currentLocation}/${
+                favorites.filter(
+                    (value: any | null) => value["name"] == currentLocation
+                )[0]["lat"]
+            }/${
+                favorites.filter(
+                    (value: any | null) => value["name"] == currentLocation
+                )[0]["lon"]
+            }`
+        );
+    }, [currentLocation]);
 
     const counties = [
         "Troms og Finnmark",
@@ -307,20 +320,7 @@ const HomePage = () => {
                         <h4>Nedbør - 10mm</h4>
                     </div>
                     <div className={styles.link_container}>
-                        <Link
-                            to={`/location/${currentLocation}/${
-                                favorites.filter(
-                                    (value: any) =>
-                                        value["name"] == currentLocation
-                                )[0]["lat"]
-                            }/${
-                                favorites.filter(
-                                    (value: any) =>
-                                        value["name"] == currentLocation
-                                )[0]["lon"]
-                            }`}
-                            className={styles.link}
-                        >
+                        <Link to={url} className={styles.link}>
                             <p>
                                 Trykk her for å se mer info for{" "}
                                 {currentLocation}
@@ -361,20 +361,7 @@ const HomePage = () => {
                                 {currentLocation}
                             </span>
                         </h3>
-                        <Link
-                            to={`/location/${currentLocation}/${
-                                favorites.filter(
-                                    (value: any) =>
-                                        value["name"] == currentLocation
-                                )[0]["lat"]
-                            }/${
-                                favorites.filter(
-                                    (value: any) =>
-                                        value["name"] == currentLocation
-                                )[0]["lon"]
-                            }`}
-                            className={styles.link2}
-                        >
+                        <Link to={url} className={styles.link2}>
                             <div className={styles.link2}>
                                 <p>Se mer info</p>
                                 <Icon icon="arrow-right" size={25} />
