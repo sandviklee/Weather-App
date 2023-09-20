@@ -5,10 +5,9 @@
     border-radius: 20px;
     height: auto;
     padding-top: 3vh;
-    padding-bottom: 3vh;
+    padding-bottom: 4vh;
     width: 48vw;
     min-width: 40%;
-    background: rgba(0, 0, 0, 0.70);
 }
 
 .container {
