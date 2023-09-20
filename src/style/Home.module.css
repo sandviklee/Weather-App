@@ -76,7 +76,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px;
     height: fit-content;
     margin-top: 25px;
     margin-bottom: 50px;
@@ -127,4 +127,33 @@
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     text-decoration: none;
+}
+
+.button {
+    background-color: transparent;
+    border: 0px;
+}
+
+.search {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_box {
+    background-color: white;
+    width: 60%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 24px -7px rgba(0,0,0,0.22);
+    -webkit-box-shadow: 0px 0px 24px -7px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0px 0px 24px -7px rgba(0,0,0,0.22);
 }

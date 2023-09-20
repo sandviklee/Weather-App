@@ -23,7 +23,9 @@ const Card = ({
             ? {
                 border: "3px solid #000000",
               }
-            : {}
+            : {
+                border: "3px solid transparent",
+              }
         }
       >
         <h1 className={styles.location}>{location}</h1>

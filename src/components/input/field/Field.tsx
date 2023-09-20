@@ -6,12 +6,19 @@ interface FieldProps {
   label?: string;
   icon?: IconType;
   placeholder?: string;
+  value: string;
+  setValue: (value: string) => void;
   onChange?: (value: string) => void;
 }
 
-const Field = ({ icon, label, placeholder, onChange }: FieldProps) => {
-  const [value, setValue] = useState("");
-
+const Field = ({
+  icon,
+  label,
+  placeholder,
+  value,
+  setValue,
+  onChange,
+}: FieldProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setValue(newValue);
