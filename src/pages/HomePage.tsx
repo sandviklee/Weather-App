@@ -22,6 +22,10 @@ const PlaceSearch = ({ name, municipality, county }: PlaceSearchInterface) => {
       .join(" "); // Join back together
   }
 
+  function unsamify(input: string) {
+    return input.split("-")[0].trim(); // Split by "-" and take the first part, then trim any whitespace
+  }
+
   return (
     <div className={styles.place_search}>
       <div className={styles.place}>
@@ -29,8 +33,8 @@ const PlaceSearch = ({ name, municipality, county }: PlaceSearchInterface) => {
         <p>{capitalizeWords(name)}</p>
       </div>
       <div className={styles.extra}>
-        <p>{municipality},</p>
-        <p>{county}</p>
+        <p>{unsamify(municipality)},</p>
+        <p>{unsamify(county)}</p>
       </div>
     </div>
   );
