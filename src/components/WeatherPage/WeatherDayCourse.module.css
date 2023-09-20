@@ -1,14 +1,21 @@
 .main {
     position: relative;
     margin: auto;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.70);
     height: auto;
     width: 48vw;
+    border: 0px;
+    border-top: 3px;
+    border-bottom: 3px;
+    border-color: black;
+    border-style: solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .extremalTemp {
-    font-family: "Lato-light";
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
     margin-top: 1vh;
 }
 
@@ -32,7 +39,8 @@
 
 .container p {
     margin: 0;
-    font-family: "Lato-light";
+    margin-top: 30px;
+    font-family: "Inter", sans-serif;
     padding-left: 4px;
     font-size: 20px;
 }

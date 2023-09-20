@@ -183,7 +183,6 @@ const WeatherPage = (): JSX.Element => {
             </button>
           </div>
         </div>
-        <hr />
         <div className={style.contentBackground}>
           <div className={style.content}>
             <div className={style.date}>
