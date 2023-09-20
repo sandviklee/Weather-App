@@ -12,6 +12,11 @@
     padding: 10px;
 }
 
+.container img {
+    width: 70px;
+    height: 70px;
+}
+
 .location {
     font-weight: 400;
     font-size: 20px;
@@ -44,4 +49,39 @@
     align-items: center;
     gap: 14px;
     height: 220px;
+}
+
+@media only screen and (max-width: 720px) {
+    .container {
+        width: 32vw;
+        height: 32vw;
+    }
+
+    .container img {
+        width: 13vw;
+        height: 13vw;
+    }
+
+    .card {
+        height: 40vw;
+        gap: 1vw;
+    }
+}
+@media only screen and (max-width: 497px) {
+    .container {
+        width: 80vw;
+        height: 32vw;
+    }
+
+    .card {
+        height: 45vw;
+    }
+
+    .location {
+        font-size: 4vw;
+    }
+
+    .temperatures {
+        font-size: 4vw;
+    }
 }
