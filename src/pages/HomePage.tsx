@@ -6,11 +6,39 @@ import Field from "../components/input/field/Field";
 import WeatherIcon from "../components/icon/WeatherIcon";
 import Icon from "../components/icon/Icon";
 import Selector from "../components/input/selector/Selector";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
+
+interface PlaceSearchInterface {
+  name: string;
+  municipality: string;
+  county: string;
+}
+
+const PlaceSearch = ({ name, municipality, county }: PlaceSearchInterface) => {
+  function capitalizeWords(input: string) {
+    return input
+      .split(" ") // Split by spaces
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize first letter and make the rest lowercase
+      .join(" "); // Join back together
+  }
+
+  return (
+    <div className={styles.place_search}>
+      <div className={styles.place}>
+        <Icon icon="map-pin" size={20} />
+        <p>{capitalizeWords(name)}</p>
+      </div>
+      <div className={styles.extra}>
+        <p>{municipality},</p>
+        <p>{county}</p>
+      </div>
+    </div>
+  );
+};
 
 const HomePage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [fieldValue, setFieldValue] = useState<string>("");
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,6 +66,28 @@ const HomePage = () => {
     "Lørdag",
   ];
 
+  type Plass = {
+    stedsnavn: [{ skrivemåte: string }];
+    representasjonspunkt: {
+      øst: number;
+      nord: number;
+      koordsys: 4258;
+    };
+    fylker: [
+      {
+        fylkesnavn: string;
+        fylkesnummer: number;
+      },
+    ];
+    kommuner: [
+      {
+        kommunenummer: string;
+        kommunenavn: string;
+      },
+    ];
+    stedsnummer: number;
+  };
+
   const dag = dagNavn[currentDate.getDay()];
 
   const favorites_test = ["Trondheim", "Oslo", "Fornebu", "Bergen"];
@@ -50,6 +100,60 @@ const HomePage = () => {
     favorites[0]
   );
 
+  const { data, refetch } = useQuery({
+    /**
+     * @summary TanStack Query, fetches API from MET to data
+     */
+    queryKey: ["search", fieldValue],
+    queryFn: () =>
+      fetch(
+        `https://ws.geonorge.no/stedsnavn/v1/sted?sok=${fieldValue}&fuzzy=true&utkoordsys=4258&treffPerSide=20&side=1`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          const resultsArray = data.navn; // Extracting the array from data.navn
+
+          if (!Array.isArray(resultsArray)) {
+            throw new Error("Expected an array in the API response");
+          }
+
+          // Filter out results where kommuner, fylker, or stedsnavn are empty or not defined
+          const filteredData = resultsArray.filter((item: Plass) => {
+            const hasKommuner = item.kommuner && item.kommuner.length > 0;
+            const hasFylker = item.fylker && item.fylker.length > 0;
+            const hasStedsnavn = item.stedsnavn && item.stedsnavn.length > 0;
+
+            return hasKommuner && hasFylker && hasStedsnavn;
+          });
+
+          // Filter out duplicates based on the combination
+          const uniqueData = filteredData.reduce(
+            (acc: Plass[], curr: Plass) => {
+              const uniqueKey = `${curr.fylker[0].fylkesnavn}-${curr.kommuner[0].kommunenummer}-${curr.stedsnavn[0].skrivemåte}`;
+              if (
+                !acc.some(
+                  (item: Plass) =>
+                    `${item.fylker[0].fylkesnavn}-${item.kommuner[0].kommunenummer}-${item.stedsnavn[0].skrivemåte}` ===
+                    uniqueKey
+                )
+              ) {
+                acc.push(curr);
+              }
+              return acc;
+            },
+            []
+          );
+
+          return uniqueData;
+        }),
+  });
+
+  useEffect(() => {
+    refetch();
+    console.log(data);
+    console.log(fieldValue);
+  }, [fieldValue, refetch]);
+
   return (
     <>
       {fieldValue.length > 0 && (
@@ -57,13 +161,51 @@ const HomePage = () => {
           <div className={styles.search_box}></div>
         </div>
       )}
-      <div className={styles.input}>
+      <div
+        className={styles.input}
+        style={
+          fieldValue.length > 0
+            ? {
+                top: "200px",
+                width: "80%",
+                left: "10%",
+              }
+            : { padding: "0px" }
+        }
+      >
         <Field
           placeholder="Søk for områder"
-          icon="search"
+          icon={"search"}
           value={fieldValue}
           setValue={setFieldValue}
         />
+        {fieldValue.length > 0 && (
+          <>
+            <div className={styles.divider}></div>
+            <div className={styles.places}>
+              {data &&
+                data.map((plass: Plass) => (
+                  <PlaceSearch
+                    name={
+                      plass.fylker?.length > 0
+                        ? plass.stedsnavn[0].skrivemåte
+                        : "Ukjent"
+                    }
+                    municipality={
+                      plass.kommuner?.length > 0
+                        ? plass.kommuner[0].kommunenavn
+                        : "Ukjent"
+                    }
+                    county={
+                      plass.fylker?.length > 0
+                        ? plass.fylker[0].fylkesnavn
+                        : "Ukjent"
+                    }
+                  />
+                ))}
+            </div>
+          </>
+        )}
       </div>
       <main className={styles.main}>
         <div className={styles.sidebar}>
