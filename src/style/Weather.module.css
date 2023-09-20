@@ -1,12 +1,12 @@
 .main {
     height: 100vh !important;
     max-width: 100vw !important;
-    background-image: url(../assets/images/pexels-pixabay-209831.jpg);
+    background-color: var(--color-gray-light);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    color: white;
+    color: black;
     overflow: auto;
 }
 

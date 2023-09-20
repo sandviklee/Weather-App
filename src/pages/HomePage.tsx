@@ -12,9 +12,19 @@ interface PlaceSearchInterface {
   name: string;
   municipality: string;
   county: string;
+  location: {
+    øst: number;
+    nord: number;
+    koordsys: number;
+  };
 }
 
-const PlaceSearch = ({ name, municipality, county }: PlaceSearchInterface) => {
+const PlaceSearch = ({
+  name,
+  municipality,
+  county,
+  location,
+}: PlaceSearchInterface) => {
   function capitalizeWords(input: string) {
     return input
       .split(" ") // Split by spaces
@@ -27,16 +37,21 @@ const PlaceSearch = ({ name, municipality, county }: PlaceSearchInterface) => {
   }
 
   return (
-    <div className={styles.place_search}>
-      <div className={styles.place}>
-        <Icon icon="map-pin" size={20} />
-        <p>{capitalizeWords(name)}</p>
+    <Link
+      to={`/location/${name}/${location.nord}/${location.øst}/`}
+      className={styles.link2}
+    >
+      <div className={styles.place_search}>
+        <div className={styles.place}>
+          <Icon icon="map-pin" size={20} />
+          <p>{capitalizeWords(name)}</p>
+        </div>
+        <div className={styles.extra}>
+          <p>{unsamify(municipality)},</p>
+          <p>{unsamify(county)}</p>
+        </div>
       </div>
-      <div className={styles.extra}>
-        <p>{unsamify(municipality)},</p>
-        <p>{unsamify(county)}</p>
-      </div>
-    </div>
+    </Link>
   );
 };
 
@@ -75,7 +90,7 @@ const HomePage = () => {
     representasjonspunkt: {
       øst: number;
       nord: number;
-      koordsys: 4258;
+      koordsys: number;
     };
     fylker: [
       {
@@ -205,6 +220,7 @@ const HomePage = () => {
                         ? plass.fylker[0].fylkesnavn
                         : "Ukjent"
                     }
+                    location={plass.representasjonspunkt}
                   />
                 ))}
             </div>
@@ -214,7 +230,7 @@ const HomePage = () => {
       <main className={styles.main}>
         <div className={styles.sidebar}>
           <div className={styles.current_weather}>
-            <WeatherIcon dayOrNight="day" status="sunny" size={120} />
+            <WeatherIcon status="clearsky_day" size={120} />
           </div>
           <h3 className={styles.temperature}>15°C</h3>
           <h3 className={styles.location}>{currentLocation}</h3>
@@ -223,11 +239,11 @@ const HomePage = () => {
             <span className={styles.time}>{formattedTime}</span>
           </h3>
           <div className={styles.extra_info}>
-            <WeatherIcon dayOrNight="day" status="sunny" size={40} />
+            <WeatherIcon status="clearsky_day" size={30} />
             <h4>Sol</h4>
           </div>
           <div className={styles.extra_info}>
-            <WeatherIcon dayOrNight="neutral" status="rain" size={40} />
+            <WeatherIcon status="rain" size={30} />
             <h4>Nedbør - 10mm</h4>
           </div>
           <div className={styles.link_container}>
