@@ -7,12 +7,14 @@ import WeatherIcon from "../components/icon/WeatherIcon";
 import Icon from "../components/icon/Icon";
 import Selector from "../components/input/selector/Selector";
 import { useQueries, useQuery } from "@tanstack/react-query";
+import TodaysDate from "../components/Date/TodaysDate";
 
 const HomePage = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [fieldValue, setFieldValue] = useState<string>("");
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const [weathers, setWeathers] = useState<any>("");
+    const [weathers, setWeathers] = useState<any>(null);
+    const time: string = new Date().toJSON().split("T")[1];
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -57,8 +59,79 @@ const HomePage = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
     const [currentLocation, setCurrentLocation] = useState<string | null>(
-        favorites[0]["name"]
+        favorites[0]["name"] || ""
     );
+
+    const filterTodaysWeatherData: any = (data: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Filtered weather data based on todays date
+         */
+        return data["properties"]["timeseries"].filter(
+            (value: { [x: string]: string }) =>
+                value["time"].split("T")[0] == TodaysDate()
+        );
+    };
+
+    const filterWeatherToCurrentTime: any = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Filtered weather data based on the current hour
+         */
+        return weather.filter(
+            (value: { [x: string]: any }) =>
+                value["time"].split("T")[1].slice(0, -1).split(":")[0] ==
+                time.split(":")[0]
+        );
+    };
+
+    const getCurrentTemperature = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Temperature data at current hour
+         */
+        return filterWeatherToCurrentTime(weather)[0]["data"]["instant"][
+            "details"
+        ]["air_temperature"];
+    };
+
+    const sortWeatherByTemperature = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Filtered weather data based on highest to lowest temperature
+         */
+        let newWeather = Object.create(weather);
+        return newWeather.sort((a: any, b: any) => {
+            return (
+                parseFloat(b["data"]["instant"]["details"]["air_temperature"]) -
+                parseFloat(a["data"]["instant"]["details"]["air_temperature"])
+            );
+        });
+    };
+
+    const getExtremalTemperatures = (weather: any) => {
+        /**
+         * @param weather Weather data from MET
+         * @returns       Both Max and Min temperatures from current day
+         */
+        return new Array(
+            sortWeatherByTemperature(weather)[0]["data"]["instant"]["details"][
+                "air_temperature"
+            ],
+            sortWeatherByTemperature(weather)[weather.length - 1]["data"][
+                "instant"
+            ]["details"]["air_temperature"]
+        );
+    };
+
+    const getWeatherSymbol = (weather: any, hour: number) => {
+        /**
+         * @param weather Weather data from MET
+         * @param hour    Given hour to get symbol from
+         * @returns       Symbol from given hour
+         */
+        return weather[hour]["data"]["next_1_hours"]["summary"]["symbol_code"];
+    };
 
     const results = useQueries({
         queries: favorites.map((place: any) => ({
@@ -70,16 +143,18 @@ const HomePage = () => {
         })),
     });
 
+    const weather = new Array();
     useEffect(() => {
-        // console.log(favorites);
-        // console.log(results[0]["data"]["properties"]["timeseries"]);
-        let weatherDataWithPlace = "";
-        results.map(
-            (data: any) =>
-                (weatherDataWithPlace += `{ place: ${
-                    favorites[results.indexOf(data)]["name"]
-                }, data: ${data["data"]["properties"]["timeseries"]} }`)
-        );
+        if (results[0]["data"] == undefined) {
+            return;
+        }
+        // results.map((data: any) =>
+        //     weather.push([
+        //         getCurrentTemperature(filterTodaysWeatherData(data["data"])),
+        //         getExtremalTemperatures(filterTodaysWeatherData(data["data"])),
+        //         getWeatherSymbol(filterTodaysWeatherData(data["data"]), 0),
+        //     ])
+        // );
     }, [results]);
 
     return (
@@ -133,7 +208,17 @@ const HomePage = () => {
                     </div>
                     <div className={styles.link_container}>
                         <Link
-                            to="/Trondheim/63.43048/10.39506"
+                            to={`/${currentLocation}/${
+                                favorites.filter(
+                                    (value: any) =>
+                                        value["name"] == currentLocation
+                                )[0]["lat"]
+                            }/${
+                                favorites.filter(
+                                    (value: any) =>
+                                        value["name"] == currentLocation
+                                )[0]["lon"]
+                            }`}
                             className={styles.link}
                         >
                             <p>
@@ -152,7 +237,7 @@ const HomePage = () => {
                             <button
                                 key={location["name"]}
                                 onClick={() =>
-                                    setCurrentLocation(location["name"])
+                                    setCurrentLocation(location["name"] || "")
                                 }
                                 className={styles.button}
                             >
@@ -176,7 +261,17 @@ const HomePage = () => {
                             </span>
                         </h3>
                         <Link
-                            to="/Trondheim/63.43048/10.39506"
+                            to={`/${currentLocation}/${
+                                favorites.filter(
+                                    (value: any) =>
+                                        value["name"] == currentLocation
+                                )[0]["lat"]
+                            }/${
+                                favorites.filter(
+                                    (value: any) =>
+                                        value["name"] == currentLocation
+                                )[0]["lon"]
+                            }`}
                             className={styles.link2}
                         >
                             <div className={styles.link2}>

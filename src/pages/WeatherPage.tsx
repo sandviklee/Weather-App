@@ -25,6 +25,7 @@ const WeatherPage = (): JSX.Element => {
     const [precipitation, setPrecipitation] = useState("0");
     const [wind, setWind] = useState("0");
     const [extremalTemp, setExtremalTemp] = useState(Array("0", "0"));
+    const [favorite, setFavorite] = useState(false);
     const [dayCourse, setDayCourse] = useState(
         Array("no_weather", "no_weather", "no_weather", "no_weather")
     );
@@ -150,6 +151,43 @@ const WeatherPage = (): JSX.Element => {
         );
     };
 
+    const addToFavorites = () => {
+        const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+        favorites.push({ name: title, lat: lat, lon: lon });
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    };
+
+    const removeFromFavorite = () => {
+        const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+        console.log(favorites)
+        favorites.findIndex( element )
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        console.log(favorites)
+    };
+
+    const toggleFavorite = () => {
+        if (favorite) {
+            removeFromFavorite();
+            return;
+        }
+        addToFavorites();
+    };
+
+    const checkIfFavourite = () => {
+        const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+        const contains = favorites.some((elem: any) => {
+            return (
+                JSON.stringify({ name: title, lat: lat, lon: lon }) ===
+                JSON.stringify(elem)
+            );
+        });
+        if (contains) {
+            setFavorite(true);
+            return;
+        }
+        setFavorite(false);
+    };
+
     useEffect(() => {
         if (data == null) {
             return;
@@ -168,6 +206,10 @@ const WeatherPage = (): JSX.Element => {
         setDayCourse(getDayCourse(weather));
     }, [weather]);
 
+    useEffect(() => {
+        checkIfFavourite();
+    }, []);
+
     return (
         <main className={style.main}>
             <div className={style.container}>
@@ -177,8 +219,16 @@ const WeatherPage = (): JSX.Element => {
                             <AiOutlineArrowLeft className={style.arrow} />
                         </Link>
                         <p className={style.title}>{title?.toUpperCase()}</p>
-                        <button className={style.heartButton}>
-                            <AiOutlineHeart className={style.heart} />
+                        <button
+                            className={style.heartButton}
+                            onClick={() => {
+                                toggleFavorite();
+                            }}
+                        >
+                            <AiOutlineHeart
+                                style={{ color: favorite ? "red" : "white" }}
+                                className={style.heart}
+                            />
                         </button>
                     </div>
                 </div>
