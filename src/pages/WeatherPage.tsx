@@ -12,18 +12,14 @@ import {
     AiOutlineArrowLeft,
 } from "react-icons/ai";
 
-interface WeatherProps {
-    lat: string;
-    lon: string;
-}
 /**
  * This is the Weather page component which is depends on longitude and latitude.
  * @summary Will render a page that shows weather information from todays date.
  * @param props (latitude and longitude)
  * @returns Weather Page JSX Element
  */
-const WeatherPage = (props: WeatherProps): JSX.Element => {
-    const { id } = useParams();
+const WeatherPage = (): JSX.Element => {
+    const { title, lat, lon } = useParams();
     const [weather, setWeather] = useState(null);
     const [temperature, setTemperature] = useState("0");
     const [precipitation, setPrecipitation] = useState("0");
@@ -33,7 +29,7 @@ const WeatherPage = (props: WeatherProps): JSX.Element => {
         Array("no_weather", "no_weather", "no_weather", "no_weather")
     );
 
-    const endpoint: string = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${props.lat}&lon=${props.lon}`;
+    const endpoint: string = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${lat}&lon=${lon}`;
     const time: string = new Date().toJSON().split("T")[1];
 
     const { data } = useQuery({
@@ -180,7 +176,7 @@ const WeatherPage = (props: WeatherProps): JSX.Element => {
                         <Link to="/">
                             <AiOutlineArrowLeft className={style.arrow} />
                         </Link>
-                        <p className={style.title}>{id?.toUpperCase()}</p>
+                        <p className={style.title}>{title?.toUpperCase()}</p>
                         <button className={style.heartButton}>
                             <AiOutlineHeart className={style.heart} />
                         </button>
