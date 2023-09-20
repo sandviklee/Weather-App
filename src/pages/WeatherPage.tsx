@@ -36,7 +36,7 @@ const WeatherPage = (): JSX.Element => {
         /**
          * @summary TanStack Query, fetches API from MET to data
          */
-        queryKey: [""],
+        queryKey: ["weatherData"],
         queryFn: () => fetch(endpoint).then((res) => res.json()),
     });
 

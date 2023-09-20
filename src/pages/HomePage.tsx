@@ -6,11 +6,13 @@ import Field from "../components/input/field/Field";
 import WeatherIcon from "../components/icon/WeatherIcon";
 import Icon from "../components/icon/Icon";
 import Selector from "../components/input/selector/Selector";
+import { useQueries, useQuery } from "@tanstack/react-query";
 
 const HomePage = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [fieldValue, setFieldValue] = useState<string>("");
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [weathers, setWeathers] = useState<any>("");
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -43,15 +45,42 @@ const HomePage = () => {
 
     const dag = dagNavn[currentDate.getDay()];
 
-    const favorites_test = ["Trondheim", "Oslo", "Fornebu", "Bergen"];
+    // const favorites_test = [
+    //     { name: "Trondheim", lat: "63.43048", lon: "10.39506" },
+    //     { name: "Oslo", lat: "59.91273", lon: "10.74609" },
+    // ];
 
-    localStorage.setItem("favorites", JSON.stringify(favorites_test));
+    // const favorites_test = ["Trondheim", "Oslo"];
+
+    // localStorage.setItem("favorites", JSON.stringify(favorites_test));
 
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
     const [currentLocation, setCurrentLocation] = useState<string | null>(
-        favorites[0]
+        favorites[0]["name"]
     );
+
+    const results = useQueries({
+        queries: favorites.map((place: any) => ({
+            queryKey: ["weatherData", place["name"]],
+            queryFn: () =>
+                fetch(
+                    `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${place["lat"]}&lon=${place["lon"]}`
+                ).then((res) => res.json()),
+        })),
+    });
+
+    useEffect(() => {
+        // console.log(favorites);
+        // console.log(results[0]["data"]["properties"]["timeseries"]);
+        let weatherDataWithPlace = "";
+        results.map(
+            (data: any) =>
+                (weatherDataWithPlace += `{ place: ${
+                    favorites[results.indexOf(data)]["name"]
+                }, data: ${data["data"]["properties"]["timeseries"]} }`)
+        );
+    }, [results]);
 
     return (
         <>
@@ -119,17 +148,21 @@ const HomePage = () => {
                     <h3>Oversikt over dine plasser</h3>
                     <Selector selections={["I dag", "I morgen"]} />
                     <div className={styles.card_container}>
-                        {favorites.map((location: string, index: number) => (
+                        {favorites.map((location: any, index: number) => (
                             <button
-                                key={location}
-                                onClick={() => setCurrentLocation(location)}
+                                key={location["name"]}
+                                onClick={() =>
+                                    setCurrentLocation(location["name"])
+                                }
                                 className={styles.button}
                             >
                                 <Card
                                     key={index}
-                                    location={location}
+                                    location={location["name"]}
                                     temperature={15}
-                                    selected={location == currentLocation}
+                                    selected={
+                                        location["name"] == currentLocation
+                                    }
                                     nightTemperature={-3}
                                 />
                             </button>
