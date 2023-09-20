@@ -3,11 +3,10 @@
     display: flex;
     margin: auto;
     border-radius: 20px;
-    height: auto;
-    padding-top: 3vh;
-    padding-bottom: 4vh;
-    width: 48vw;
+    height: 120px;
+    width: 48%;
     min-width: 40%;
+    background: rgba(0, 0, 0, 0.70);
 }
 
 .container {
@@ -19,7 +18,6 @@
 .container p {
     padding-left: 4px;
     font-size: 50px;
-    margin: 0;
 }
 
 .container sub{
@@ -30,41 +28,4 @@
     position: relative;
     font-size: 30px;
     bottom: -0.5vh;
-}
-
-@media only screen and (max-width: 1000px) {
-    .main {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .container {
-        margin: 0 2vw 0 2vw;
-        max-height: 12vw;
-        padding: 1vw 0 1vw 0;
-    }
-    .container p {
-        font-size: 6vw;
-    }
-    .icon {
-        font-size: 5vw;
-    }
-}
-@media only screen and (max-width: 600px) {
-    .main {
-        width: 80vw;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .container {
-        margin: 0 2vw 0 2vw;
-        max-height: 12vw;
-    }
-
-    .container p {
-        font-size: 8vw;
-    }
-    .icon {
-        font-size: 7vw;
-    }
 }

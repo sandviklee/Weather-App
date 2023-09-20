@@ -26,7 +26,11 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>NATT</p>
                         <img
                             className={style.weatherImage}
+<<<<<<< HEAD
                             src={`/yr-icons/${props.weatherCourse[0]}.svg`}
+=======
+                            src={`../../src/assets/images/svg/${props.weatherCourse[0]}.svg`}
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
                             alt="Morning Weather"
                         />
                     </div>
@@ -36,7 +40,11 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>MORGEN</p>
                         <img
                             className={style.weatherImage}
+<<<<<<< HEAD
                             src={`/yr-icons/${props.weatherCourse[1]}.svg`}
+=======
+                            src={`../../src/assets/images/svg/${props.weatherCourse[1]}.svg`}
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
                             alt="Noon Weather"
                         />
                     </div>
@@ -46,7 +54,11 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>AFTEN</p>
                         <img
                             className={style.weatherImage}
+<<<<<<< HEAD
                             src={`/yr-icons/${props.weatherCourse[2]}.svg`}
+=======
+                            src={`../../src/assets/images/svg/${props.weatherCourse[2]}.svg`}
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
                             alt="Afternoon Weather"
                         />
                     </div>
@@ -56,7 +68,11 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>KVELD</p>
                         <img
                             className={style.weatherImage}
+<<<<<<< HEAD
                             src={`/yr-icons/${props.weatherCourse[3]}.svg`}
+=======
+                            src={`../../src/assets/images/svg/${props.weatherCourse[3]}.svg`}
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
                             alt="Night Weather"
                         />
                     </div>

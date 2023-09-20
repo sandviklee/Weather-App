@@ -1,43 +1,67 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import style from "../style/Weather.module.css";
 import WeatherInfo from "../components/WeatherPage/WeatherInfo";
 import WeatherDayCourse from "../components/WeatherPage/WeatherDayCourse";
 import TodaysDate from "../components/Date/TodaysDate";
 import TodaysDateComponent from "../components/Date/TodaysDateComponent";
+<<<<<<< HEAD
 import {
     AiOutlineHeart,
     AiFillCalendar,
     AiOutlineArrowLeft,
 } from "react-icons/ai";
+=======
+import { AiOutlineHeart, AiFillCalendar } from "react-icons/ai";
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
 
+interface WeatherProps {
+    lat: string;
+    lon: string;
+}
 /**
  * This is the Weather page component which is depends on longitude and latitude.
  * @summary Will render a page that shows weather information from todays date.
  * @param props (latitude and longitude)
  * @returns Weather Page JSX Element
  */
+<<<<<<< HEAD
 const WeatherPage = (): JSX.Element => {
     const { title, lat, lon } = useParams();
+=======
+const WeatherPage = (props: WeatherProps): JSX.Element => {
+    const { id } = useParams();
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
     const [weather, setWeather] = useState(null);
     const [temperature, setTemperature] = useState("0");
     const [precipitation, setPrecipitation] = useState("0");
     const [wind, setWind] = useState("0");
     const [extremalTemp, setExtremalTemp] = useState(Array("0", "0"));
+<<<<<<< HEAD
     const [favorite, setFavorite] = useState(false);
+=======
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
     const [dayCourse, setDayCourse] = useState(
         Array("no_weather", "no_weather", "no_weather", "no_weather")
     );
 
+<<<<<<< HEAD
     const endpoint: string = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${lat}&lon=${lon}`;
+=======
+    const endpoint: string = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${props.lat}&lon=${props.lon}`;
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
     const time: string = new Date().toJSON().split("T")[1];
 
     const { data } = useQuery({
         /**
          * @summary TanStack Query, fetches API from MET to data
          */
+<<<<<<< HEAD
         queryKey: ["weatherData"],
+=======
+        queryKey: [""],
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
         queryFn: () => fetch(endpoint).then((res) => res.json()),
     });
 
@@ -127,7 +151,11 @@ const WeatherPage = (): JSX.Element => {
         /**
          * @param weather Weather data from MET
          * @param hour    Given hour to get symbol from
+<<<<<<< HEAD
          * @returns       Symbol from given hour
+=======
+         * @returns       Symbol from given hour 
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
          */
         return weather[hour]["data"]["next_1_hours"]["summary"]["symbol_code"];
     };
@@ -151,6 +179,7 @@ const WeatherPage = (): JSX.Element => {
         );
     };
 
+<<<<<<< HEAD
     const addToFavorites = () => {
         const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
         favorites.push({ name: title, lat: lat, lon: lon });
@@ -194,6 +223,8 @@ const WeatherPage = (): JSX.Element => {
         setFavorite(false);
     };
 
+=======
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
     useEffect(() => {
         if (data == null) {
             return;
@@ -212,15 +243,19 @@ const WeatherPage = (): JSX.Element => {
         setDayCourse(getDayCourse(weather));
     }, [weather]);
 
+<<<<<<< HEAD
     useEffect(() => {
         checkIfFavourite();
     }, []);
 
+=======
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
     return (
         <main className={style.main}>
             <div className={style.container}>
                 <div className={style.titleContent}>
                     <div className={style.titlePlacement}>
+<<<<<<< HEAD
                         <Link to="/">
                             <AiOutlineArrowLeft className={style.arrow} />
                         </Link>
@@ -237,6 +272,14 @@ const WeatherPage = (): JSX.Element => {
                             />
                         </button>
                     </div>
+=======
+                        <p className={style.title}>{id?.toUpperCase()}</p>
+                        <button className={style.heartButton}>
+                            <AiOutlineHeart className={style.heart} />
+                        </button>
+                    </div>
+                    <p className={style.cityTitle}>by (Trøndelag)</p>
+>>>>>>> d7388e3dc008ad0fd1af89f68a55ff891f2cc5c3
                 </div>
                 <hr
                     style={{
