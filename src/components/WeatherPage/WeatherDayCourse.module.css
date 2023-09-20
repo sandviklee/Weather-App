@@ -1,16 +1,21 @@
 .main {
     position: relative;
     margin: auto;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.70);
-    height: 180px;
-    width: 48%;
-    min-width: 48%;
+    height: auto;
+    width: 48vw;
+    border: 0px;
+    border-top: 3px;
+    border-bottom: 3px;
+    border-color: black;
+    border-style: solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .extremalTemp {
-    font-size: 16px;
-    font-family: "Lato-light";
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
     margin-top: 1vh;
 }
 
@@ -34,7 +39,8 @@
 
 .container p {
     margin: 0;
-    font-family: "Lato-light";
+    margin-top: 30px;
+    font-family: "Inter", sans-serif;
     padding-left: 4px;
     font-size: 20px;
 }
@@ -51,4 +57,41 @@
     position: relative;
     font-size: 30px;
     bottom: -0.5vh;
+}
+
+@media only screen and (max-width: 1000px) {
+    .extremalTemp {
+        font-size: 2vw;
+    }
+    
+    .temperatures {
+        font-size: 2vw;
+    }
+
+    .container p {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        width: 80vw;
+    }
+    .extremalTemp {
+        font-size: 4vw;
+    }
+    
+    .temperatures {
+        font-size: 4vw;
+    }
+
+    .container p {
+        font-size: 4vw;
+    }
+}
+
+@media only screen and (max-height: 800px) {
+    .weatherImage {
+        width: 6vw;
+    }
 }
