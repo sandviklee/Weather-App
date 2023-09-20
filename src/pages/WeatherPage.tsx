@@ -159,18 +159,24 @@ const WeatherPage = (): JSX.Element => {
 
     const removeFromFavorite = () => {
         const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-        console.log(favorites)
-        favorites.findIndex( element )
+        console.log(favorites);
+        favorites.splice(
+            favorites.findIndex(
+                (e: any) => e.name == title && e.lat == lat && e.lon == lon
+            ),
+            1
+        );
         localStorage.setItem("favorites", JSON.stringify(favorites));
-        console.log(favorites)
     };
 
     const toggleFavorite = () => {
         if (favorite) {
             removeFromFavorite();
+            setFavorite(false);
             return;
         }
         addToFavorites();
+        setFavorite(true);
     };
 
     const checkIfFavourite = () => {
