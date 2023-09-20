@@ -1,19 +1,26 @@
 .main {
-    height: 100vh !important; 
+    height: 100vh !important;
     max-width: 100vw !important;
     background-image: url(../assets/images/pexels-pixabay-209831.jpg);
-    background-position: center 0;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: 150%;
+    background-size: cover;
+    background-attachment: fixed;
     color: white;
+    overflow: auto;
 }
 
 .container {
-    overflow: hidden;
     position: relative;
     text-align: center;
+    height: fit-content;
     padding-top: 20vh;
-    
+}
+
+.container hr {
+    width: 48%;
+    margin-top: 10px;
+    margin-bottom: 2px;
 }
 
 .titlePlacement {
@@ -84,6 +91,8 @@
 .date p {
     margin-bottom: 0;
     margin-top: 0;
+    padding: 0;
+    width: fit-content;
 }
 
 .content {
@@ -102,8 +111,44 @@
     right: 0;
     z-index: 1;
     width: 48%;
-    height: 47.5vh;
+    height: auto;
     background-color: rgba(0, 0, 0, 0.20);
     border-radius: 0px 0px 20px 20px;
 }
 
+@media only screen and (max-width: 1000px) {
+    .date {
+        font-size: 3vw;
+        padding-top: 1vh;
+    }
+
+    .content {
+        grid-row-gap: 1.5vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .contentBackground {
+        width: 80vw;
+    }
+
+    .container {
+        padding-top: 20vh;
+    }
+
+    .container hr {
+        width: 80vw;
+    }
+ 
+    .title {
+        font-size: 10vw;
+    }
+
+    .arrow {
+        font-size: 7vw;
+    }
+
+    .heart {
+        font-size: 8vw;
+    }
+}
