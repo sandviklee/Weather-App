@@ -1,0 +1,274 @@
+.temperature {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.current_weather {
+    margin-left: -10px;
+    margin-top: 130px;
+}
+
+.location {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: -8px;
+}
+
+.day_time {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
+    padding-bottom: 20px;
+    border: 0px;
+    border-bottom: 2px;
+    border-color: black;
+    border-style: solid;
+}
+
+.extra_info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.extra_info h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: black;
+    padding: 0px;
+    margin: 0px;
+}
+
+.time {
+    color: var(--color-gray);
+}
+
+.favorites {
+    padding: 3vw;
+    padding: 3vw;
+    width: 100%;
+}
+
+.favorites h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    height: fit-content;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.sidebar {
+    border: 0px;
+    border-bottom: 3px; 
+    background-color: white;
+    width: 320px;
+    padding: 30px;
+}
+
+.main {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color-gray-light);
+    min-height: 100vh;
+}
+
+.link_container {
+    margin-top: 60px;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+}
+
+.link p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.link2 {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    border-bottom: solid 1px black;
+}
+
+.link2 p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.button {
+    background-color: transparent;
+    border: 0px;
+}
+
+.search {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input {
+    position: absolute;
+    top: 50px;
+    left: 2vw;
+    z-index: 100;
+    background-color: white;
+    overflow: hidden;
+    padding: 1vw 2vw;
+    width: 220px;
+    border: 0px;
+    border-bottom: solid 3px var(--color-gray);
+    border-radius: 2px;
+}
+
+.divider {
+    height: 2px;
+    background-color: black;
+    margin-top: 8px;
+}
+
+.places {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    max-height: calc(100vh - 400px);
+    overflow-y: scroll;
+    gap: 15px;
+}
+
+.place_search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+    border: 0px;
+    border-bottom: 2px;
+    border-color: var(--color-gray-light);
+    border-style: solid;
+}
+
+.place {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+}
+
+.place_search .extra {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.reset {
+    color: rgb(120, 120, 120);
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+@media only screen and (max-width: 750px) {
+    .sidebar {
+        display: none;
+    }
+
+    .input {
+        position: relative;
+        width: 90vw;
+    }
+
+    .favorites h3 {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        margin-top: 7vh;
+        margin-bottom: 20px;
+    }
+
+    .card_container {
+        justify-content: center;
+    }
+
+    .places {
+        margin-top: 4px;
+    }
+
+    .place_search {
+        font-size: 3vw;
+    }
+
+    .place_search .extra {
+        margin-right: 4vw;
+    }
+
+    .divider {
+        margin-top: 1vw;
+    }
+
+    .header {
+        justify-content: center;
+        font-size: 4vw;
+    }
+}
+
+@media only screen and (max-height: 650px) {
+    .favorites h3 {
+        margin-top: 12vw;
+    }
+}
