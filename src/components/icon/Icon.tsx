@@ -6,7 +6,7 @@ interface IconProps {
 }
 
 const Icon = ({ icon, size = 24 }: IconProps) => {
-  const iconSrc = `/icons/${icon}.svg`;
+  const iconSrc = `/project1/icons/${icon}.svg`;
   return (
     <img
       src={iconSrc}
