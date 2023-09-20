@@ -29,7 +29,7 @@ const Card = ({
         }
       >
         <h1 className={styles.location}>{location}</h1>
-        <WeatherIcon dayOrNight="day" status={"sunny"} size={70} />
+        <WeatherIcon status="heavyrain" size={60} />
         <div className={styles.temperatures}>
           <p className={styles.temperature}>{temperature}°</p>
           <p className={styles.night_temperature}>{nightTemperature}°</p>
