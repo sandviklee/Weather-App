@@ -299,7 +299,8 @@ const HomePage = () => {
         </div>
         <div className={styles.favorites}>
           <h3>Oversikt over dine plasser</h3>
-          <Selector selections={["I dag", "I morgen"]} />
+          {/* Removed "I morgen" since not implemented */}
+          <Selector selections={["I dag"]} /> 
           <div className={styles.card_container}>
             {favorites.map((location: string, index: number) => (
               <button
@@ -317,12 +318,12 @@ const HomePage = () => {
             ))}
           </div>
           <div className={styles.header}>
-            <h3>
+            {/* <h3>
               Høydepunkter for{" "}
               <span style={{ textDecoration: "underline" }}>
                 {currentLocation}
               </span>
-            </h3>
+            </h3> */}
             <Link to="/Weather/Trondheim" className={styles.link2}>
               <div className={styles.link2}>
                 <p>Se mer info</p>
