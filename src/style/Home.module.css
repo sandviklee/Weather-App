@@ -55,7 +55,7 @@
 }
 
 .favorites {
-    padding: 40px;
+    padding: 3vw;
     width: 100%;
 }
 
@@ -199,4 +199,10 @@
     gap: 10px;
     align-items: center;
     margin-right: 40px;
+}
+
+@media only screen and (max-width: 750px) {
+    .sidebar {
+        display: none;
+    }
 }
