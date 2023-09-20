@@ -76,6 +76,7 @@ We decided to go with a simple design, with a focus on functionality. We wanted 
 ### Techicalities
 - Search filtering is not stored between reloads since we found it more intuitive.
 - We only show today's weather data therefore if you are past certain times the earlier weather data will be blanked out as a limitation of the API.
+- The home page currently only shows mock data, as we did not have time to implement the API to work as such.
 - When it comes to the weather data in the future we decided to not implement this functionality this time arround. But we plan to implement it in the future.
 - Testing is very minimal, but we plan on making more tests in the future.
 
