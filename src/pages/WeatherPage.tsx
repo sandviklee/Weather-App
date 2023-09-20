@@ -186,28 +186,23 @@ const WeatherPage = (props: WeatherProps): JSX.Element => {
                         </button>
                     </div>
                 </div>
-                <hr
-                    style={{
-                        width: "48%",
-                        marginTop: "10px",
-                        marginBottom: "2px",
-                    }}
-                />
-                <div className={style.contentBackground} />
-                <div className={style.content}>
-                    <div className={style.date}>
-                        <AiFillCalendar />
-                        <TodaysDateComponent />
+                <hr/>
+                <div className={style.contentBackground}>
+                    <div className={style.content}>
+                        <div className={style.date}>
+                            <AiFillCalendar />
+                            <TodaysDateComponent />
+                        </div>
+                        <WeatherInfo
+                            temperature={temperature}
+                            rain={precipitation}
+                            wind={wind}
+                        />
+                        <WeatherDayCourse
+                            extremalTemperatures={extremalTemp}
+                            weatherCourse={dayCourse}
+                        />
                     </div>
-                    <WeatherInfo
-                        temperature={temperature}
-                        rain={precipitation}
-                        wind={wind}
-                    />
-                    <WeatherDayCourse
-                        extremalTemperatures={extremalTemp}
-                        weatherCourse={dayCourse}
-                    />
                 </div>
             </div>
         </main>
