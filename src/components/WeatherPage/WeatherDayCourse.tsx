@@ -26,7 +26,7 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>NATT</p>
                         <img
                             className={style.weatherImage}
-                            src={`/yr-icons/${props.weatherCourse[0]}.svg`}
+                            src={`/project1/yr-icons/${props.weatherCourse[0]}.svg`}
                             alt="Morning Weather"
                         />
                     </div>
@@ -36,7 +36,7 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>MORGEN</p>
                         <img
                             className={style.weatherImage}
-                            src={`/yr-icons/${props.weatherCourse[1]}.svg`}
+                            src={`/project1/yr-icons/${props.weatherCourse[1]}.svg`}
                             alt="Noon Weather"
                         />
                     </div>
@@ -46,7 +46,7 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>AFTEN</p>
                         <img
                             className={style.weatherImage}
-                            src={`/yr-icons/${props.weatherCourse[2]}.svg`}
+                            src={`/project1/yr-icons/${props.weatherCourse[2]}.svg`}
                             alt="Afternoon Weather"
                         />
                     </div>
@@ -56,7 +56,7 @@ const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
                         <p>KVELD</p>
                         <img
                             className={style.weatherImage}
-                            src={`/yr-icons/${props.weatherCourse[3]}.svg`}
+                            src={`/project1/yr-icons/${props.weatherCourse[3]}.svg`}
                             alt="Night Weather"
                         />
                     </div>
