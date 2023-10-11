@@ -198,6 +198,7 @@ const WeatherPage = (): JSX.Element => {
         if (data == null) {
             return;
         }
+        console.log(data);
         setWeather(filterTodaysWeatherData(data));
     }, [data]);
 
@@ -205,6 +206,8 @@ const WeatherPage = (): JSX.Element => {
         if (weather == null) {
             return;
         }
+        console.log(weather);
+        console.log(TodaysDate());
         setTemperature(getCurrentTemperature(weather));
         setPrecipitation(getPrecipitation1H(weather));
         setWind(getCurrentWind(weather));
@@ -238,13 +241,6 @@ const WeatherPage = (): JSX.Element => {
                         </button>
                     </div>
                 </div>
-                <hr
-                    style={{
-                        width: "48%",
-                        marginTop: "10px",
-                        marginBottom: "2px",
-                    }}
-                />
                 <div className={style.contentBackground} />
                 <div className={style.content}>
                     <div className={style.date}>
