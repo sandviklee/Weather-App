@@ -7,6 +7,13 @@
     margin-top: 20px;
 }
 
+.title {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
 .current_weather {
     margin-left: -10px;
     margin-top: 130px;
@@ -221,6 +228,15 @@
     font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 15px;
+    cursor: pointer;
+}
+
+.no_places {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgb(120, 120, 120);
+    margin-top: 100px;
 }
 
 @media only screen and (max-width: 750px) {
