@@ -1,0 +1,46 @@
+.container {
+    background-color: white;
+    width: 300px;
+    height: 100px;
+    color: black;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.bar_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.bar {
+    height: 10px;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    margin-bottom: 9px;
+    overflow: hidden;
+}
+
+.uv_index {
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 10px;
+    color: black;
+}
