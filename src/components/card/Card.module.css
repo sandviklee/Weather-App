@@ -1,6 +1,6 @@
 .container {
     background-color: white;
-    width: 170px;
+    width: 140px;
     height: 170px;
     color: black;
     font-family: "Inter", sans-serif;
@@ -10,6 +10,7 @@
     justify-items: center;
     border-radius: 15px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .container img {
@@ -35,14 +36,6 @@
 .night_temperature {
     color: rgb(146, 146, 146);
 }
-
-.selected {
-    width: 8px;
-    height: 8px;
-    background-color: black;
-    border-radius: 100%;
-}
-
 .card {
     display: flex;
     flex-direction: column;

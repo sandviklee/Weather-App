@@ -5,8 +5,14 @@ import Card from "../components/card/Card";
 import Field from "../components/input/field/Field";
 import WeatherIcon from "../components/icon/WeatherIcon";
 import Icon from "../components/icon/Icon";
-import Selector from "../components/input/selector/Selector";
-import { useQuery } from "@tanstack/react-query";
+import UVCard from "../components/card/UVcard";
+import HumidityCard from "../components/card/HumidityCard";
+import WindCard from "../components/card/WindCard";
+import {
+  WeatherStatus,
+  norwegianWeatherStatusMapping,
+} from "../components/icon/WeatherIcon";
+import { useQuery, useQueries } from "@tanstack/react-query";
 import Options from "../components/input/selector/Options";
 
 interface PlaceSearchInterface {
@@ -111,21 +117,25 @@ const HomePage = () => {
 
   const dag = dagNavn[currentDate.getDay()];
 
-  //const favorites_test: any = [];
+  type Favorite = {
+    name: string;
+    lat: number;
+    lon: number;
+  };
 
-  //localStorage.setItem("favorites", JSON.stringify(favorites_test));
+  const favorites: Favorite[] = JSON.parse(
+    localStorage.getItem("favorites") || "[]"
+  );
 
-  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
-  const [currentLocation, setCurrentLocation] = useState<string | null>();
+  const [currentLocationIndex, setCurrentLocationIndex] = useState<number>(0);
 
   const [selectedCounty, setSelectedCounty] = useState<string | undefined>(
     localStorage.getItem("prefferedCountySelection") as string
   );
 
-  const { data, refetch } = useQuery({
+  const locationQuery = useQuery({
     /**
-     * @summary TanStack Query, fetches API from MET to data
+     * @summary TanStack Query, fetches API from geonorge to data
      */
     queryKey: ["search", fieldValue, selectedCounty],
     queryFn: () =>
@@ -173,28 +183,44 @@ const HomePage = () => {
         }),
   });
 
-  useEffect(() => {
-    refetch();
+  const fetchWeatherByLonLat = async (lon: number, lat: number) => {
+    const response = await fetch(
+      `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${lat}&lon=${lon}`
+    );
+    const data = await response.json();
     console.log(data);
-    console.log(fieldValue);
-  }, [fieldValue, refetch]);
+    return data;
+  };
+
+  const weatherQueries = useQueries({
+    queries: favorites.map((favorite: Favorite) => {
+      return {
+        queryKey: ["user", favorite.lon, favorite.lat],
+        queryFn: () => fetchWeatherByLonLat(favorite.lon, favorite.lat),
+      };
+    }),
+  });
 
   useEffect(() => {
-    if (currentLocation == null) {
+    if (favorites.length != 0 && currentLocationIndex == null) {
+      setCurrentLocationIndex(0);
+    }
+  }, [favorites, currentLocationIndex]);
+
+  useEffect(() => {
+    locationQuery.refetch();
+    console.log(locationQuery.data);
+    console.log(fieldValue);
+  }, [fieldValue, locationQuery, locationQuery.refetch]);
+
+  useEffect(() => {
+    if (favorites.length == 0) {
       return;
     }
     setUrl(
-      `/location/${currentLocation}/${
-        favorites.filter(
-          (value: any | null) => value["name"] == currentLocation
-        )[0]["lat"]
-      }/${
-        favorites.filter(
-          (value: any | null) => value["name"] == currentLocation
-        )[0]["lon"]
-      }`
+      `/location/${favorites[currentLocationIndex].name}/${favorites[currentLocationIndex].lat}/${favorites[currentLocationIndex].lon}`
     );
-  }, [currentLocation]);
+  }, [currentLocationIndex, favorites]);
 
   const counties = [
     "Troms og Finnmark",
@@ -262,8 +288,8 @@ const HomePage = () => {
           <>
             <div className={styles.divider}></div>
             <div className={styles.places}>
-              {data &&
-                data.map((plass: Plass) => (
+              {locationQuery.data &&
+                locationQuery.data.map((plass: Plass) => (
                   <PlaceSearch
                     name={
                       plass.fylker?.length > 0
@@ -289,30 +315,60 @@ const HomePage = () => {
       </div>
       <main className={styles.main}>
         <div className={styles.sidebar}>
-          {currentLocation ? (
+          {favorites.length != 0 ? (
             <>
               <div className={styles.current_weather}>
-                <WeatherIcon status="clearsky_day" size={120} />
+                <WeatherIcon
+                  status={
+                    weatherQueries[currentLocationIndex].data?.properties
+                      .timeseries[0].data.next_1_hours?.summary?.symbol_code
+                  }
+                  size={120}
+                />
               </div>
-              <h3 className={styles.temperature}>15°C</h3>
-              <h3 className={styles.location}>{currentLocation}</h3>
+              <h3 className={styles.temperature}>
+                {
+                  weatherQueries[currentLocationIndex].data?.properties
+                    .timeseries[0].data.instant.details.air_temperature
+                }
+                °C
+              </h3>
+              <h3 className={styles.location}>
+                {favorites[currentLocationIndex].name}
+              </h3>
               <h3 className={styles.day_time}>
                 <span className={styles.day}>{dag},</span>{" "}
                 <span className={styles.time}>{formattedTime}</span>
               </h3>
               <div className={styles.extra_info}>
-                <WeatherIcon status="clearsky_day" size={30} />
-                <h4>Sol</h4>
+                <WeatherIcon
+                  status={
+                    weatherQueries[currentLocationIndex].data?.properties
+                      .timeseries[0].data.next_1_hours?.summary?.symbol_code
+                  }
+                  size={30}
+                />
+                <h4>
+                  {
+                    norwegianWeatherStatusMapping[
+                      weatherQueries[currentLocationIndex].data?.properties
+                        .timeseries[0].data.next_1_hours?.summary
+                        ?.symbol_code as WeatherStatus
+                    ]
+                  }
+                </h4>
               </div>
               <div className={styles.extra_info}>
                 <WeatherIcon status="rain" size={30} />
-                <h4>Nedbør - 10mm</h4>
-              </div>
-              <div className={styles.link_container}>
-                <Link to={url} className={styles.link}>
-                  <p>Trykk her for å se mer info for {currentLocation}</p>
-                  <Icon icon="arrow-right" size={25} />
-                </Link>
+                <h4>
+                  Nedbør -{" "}
+                  {
+                    weatherQueries[currentLocationIndex].data?.properties
+                      .timeseries[0].data.next_6_hours?.details
+                      .precipitation_amount
+                  }
+                  mm
+                </h4>
               </div>
             </>
           ) : (
@@ -323,20 +379,39 @@ const HomePage = () => {
           )}
         </div>
         <div className={styles.favorites}>
-          <h3 className={styles.title}>Været</h3>
+          <div className={styles.header}>
+            <h3 className={styles.title}>Dine plasser</h3>
+            <Link to={url} className={styles.link}>
+              <p>
+                Se mer info{favorites.length != 0 && " for "}
+                {favorites.length != 0 && favorites[currentLocationIndex].name}
+              </p>
+              <Icon icon="arrow-right" size={25} />
+            </Link>
+          </div>
           <div className={styles.card_container}>
-            {favorites.map((location: any, index: number) => (
+            {favorites.map((location: Favorite, index: number) => (
               <button
-                key={location["name"]}
-                onClick={() => setCurrentLocation(location["name"] || "")}
+                key={location.name}
+                onClick={() => setCurrentLocationIndex(index)}
                 className={styles.button}
               >
                 <Card
                   key={index}
-                  location={location["name"]}
-                  temperature={15}
-                  selected={location["name"] == currentLocation}
-                  nightTemperature={-3}
+                  location={location.name}
+                  temperature={
+                    weatherQueries[index].data?.properties.timeseries[0].data
+                      .instant.details.air_temperature || 0
+                  }
+                  selected={currentLocationIndex == index}
+                  status={
+                    weatherQueries[index].data?.properties.timeseries[0].data
+                      .next_1_hours?.summary?.symbol_code || "clearsky_day"
+                  }
+                  next12hours={
+                    weatherQueries[index].data?.properties.timeseries[2].data
+                      .instant.details.air_temperature || 0
+                  }
                 />
               </button>
             ))}
@@ -344,8 +419,45 @@ const HomePage = () => {
               <p>Du har ikke lagt til noen lokasjoner enda</p>
             )}
           </div>
-
-          <div className={styles.header}></div>
+          {favorites.length != 0 && (
+            <>
+              <h3 className={styles.title}>
+                Høydepunkter for {favorites[currentLocationIndex].name}
+              </h3>
+              <div className={styles.card_container}>
+                <UVCard
+                  UVindex={
+                    weatherQueries[currentLocationIndex].data?.properties
+                      .timeseries[0].data.instant.details
+                      .ultraviolet_index_clear_sky
+                  }
+                />
+                <WindCard
+                  WindSpeed={
+                    weatherQueries[currentLocationIndex].data?.properties
+                      .timeseries[0].data.instant.details.wind_speed
+                  }
+                  WindGust={
+                    weatherQueries[currentLocationIndex].data?.properties
+                      .timeseries[0].data.instant.details.wind_speed_of_gust
+                  }
+                  WindDirection={
+                    weatherQueries[currentLocationIndex].data?.properties
+                      .timeseries[0].data.instant.details.wind_from_direction
+                  }
+                />
+                <HumidityCard
+                  humidity={
+                    (
+                      100 -
+                      weatherQueries[currentLocationIndex].data?.properties
+                        .timeseries[0].data.instant.details.relative_humidity
+                    ).toPrecision(3) as unknown as number
+                  }
+                />
+              </div>
+            </>
+          )}
         </div>
       </main>
     </>
