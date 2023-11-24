@@ -33,7 +33,7 @@ const UVCard = ({ WindSpeed, WindGust, WindDirection }: CardProps) => {
         <div className={styles.compass}>
           {convertFromDegreesToDirectionString(WindDirection)}
           <img
-            src="/icons/compass.svg"
+            src="/project1/icons/compass.svg"
             alt="arrow"
             width="24px"
             height="24px"
