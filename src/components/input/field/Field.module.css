@@ -6,7 +6,7 @@
 }
 
 .input {
-    background-color: white;    
+    background-color: transparent;    
     width: 100%;
     height: 40px;   
     border: 2cap;
@@ -27,19 +27,4 @@
 
 .input:focus {
     outline: none;
-}
-
-@media only screen and (max-width: 750px) {
-    .input {
-        font-size: 3vw;
-    }
-
-    .field img {
-        width: 4vw;
-        height: 4vw;
-    }
-
-    .input {
-        height: 30px;
-    }
 }

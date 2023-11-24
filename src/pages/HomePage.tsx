@@ -5,7 +5,7 @@ import Card from "../components/card/Card";
 import Field from "../components/input/field/Field";
 import WeatherIcon from "../components/icon/WeatherIcon";
 import Icon from "../components/icon/Icon";
-import UVCard from "../components/card/UVcard";
+import UVCard from "../components/card/UVCard";
 import HumidityCard from "../components/card/HumidityCard";
 import WindCard from "../components/card/WindCard";
 import {
@@ -380,7 +380,7 @@ const HomePage = () => {
         </div>
         <div className={styles.favorites}>
           <div className={styles.header}>
-            <h3 className={styles.title}>Dine plasser</h3>
+            <p className={styles.container_title}>Dine plasser</p>
             <Link to={url} className={styles.link}>
               <p>
                 Se mer info{favorites.length != 0 && " for "}

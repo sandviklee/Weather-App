@@ -44,3 +44,9 @@
     margin-top: 10px;
     color: black;
 }
+
+@media only screen and (max-width: 750px) {
+    .container {
+        width: 80vw;
+    }
+}

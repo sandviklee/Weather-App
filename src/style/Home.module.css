@@ -7,7 +7,7 @@
     margin-top: 20px;
 }
 
-.title {
+.container_title {
     font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 20px;
@@ -176,6 +176,7 @@
     left: 2vw;
     z-index: 100;
     background-color: white;
+    border-radius: 8px;
     overflow: hidden;
     padding: 1vw 2vw;
     width: 220px;
@@ -194,14 +195,15 @@
     max-height: calc(100vh - 400px);
     overflow-y: scroll;
     gap: 15px;
+    align-items: flex-start;
 }
 
 .place_search {
     display: flex;
     flex-direction: row;
+    font-size: 16px;
     justify-content: space-between;
-    width: 100%;
-    align-items: center;
+    width: 80vw;
     cursor: pointer;
     border: 0px;
     border-bottom: 2px;
@@ -256,7 +258,7 @@
 
     .input {
         position: relative;
-        width: 90vw;
+        width: 95vw;
     }
 
     .favorites h3 {
@@ -267,30 +269,33 @@
         margin-bottom: 20px;
     }
 
-    .card_container {
-        justify-content: center;
-    }
-
-    .places {
-        margin-top: 4px;
-    }
 
     .place_search {
-        font-size: 3vw;
-    }
-
-    .place_search .extra {
-        margin-right: 4vw;
-    }
-
-    .divider {
-        margin-top: 1vw;
+        font-size: 20px;
     }
 
     .header {
-        justify-content: center;
-        font-size: 4vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
+
+    .container_title {
+        margin-bottom: 0px;
+        margin-top: 65px;
+    }
+
+    .input {
+        box-shadow: -1px 1px 16px 1px rgba(0,0,0,0.11);
+        -webkit-box-shadow: -1px 1px 16px 1px rgba(0,0,0,0.11);
+        -moz-box-shadow: -1px 1px 16px 1px rgba(0,0,0,0.11);
+    }
+
+    .place_search {
+        font-size: 12px;
+        flex-direction: column;
+    }
+    
 }
 
 @media only screen and (max-height: 650px) {

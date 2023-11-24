@@ -47,3 +47,9 @@
     justify-content: space-between;
     gap: 6px;
 }
+
+@media only screen and (max-width: 750px) {
+    .container {
+        width: 80vw;
+    }
+}
