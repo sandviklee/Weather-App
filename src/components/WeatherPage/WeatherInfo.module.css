@@ -36,6 +36,7 @@
     .main {
         flex-wrap: wrap;
         justify-content: center;
+        padding-top: 1vw;
     }
     .container {
         margin: 0 2vw 0 2vw;

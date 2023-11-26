@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WeatherDayCourse component > matches snapshot 1`] = `
+<DocumentFragment>
+  <main
+    class="_main_26373e"
+  >
+    <p
+      class="_extremalTemp_26373e"
+    >
+      Maks/Min Temperatur
+    </p>
+    <p
+      class="_temperatures_26373e"
+    >
+      10C° / 2C°
+    </p>
+    <div
+      class="_weathers_26373e"
+    >
+      <div
+        class="_container_26373e"
+      >
+        <div
+          class="_weatherContainer_26373e"
+        >
+          <p>
+            NATT
+          </p>
+          <img
+            alt="Morning Weather"
+            class="_weatherImage_26373e"
+            src="/project1/yr-icons/no_weather.svg"
+          />
+        </div>
+      </div>
+      <div
+        class="_container_26373e"
+      >
+        <div
+          class="_weatherContainer_26373e"
+        >
+          <p>
+            MORGEN
+          </p>
+          <img
+            alt="Noon Weather"
+            class="_weatherImage_26373e"
+            src="/project1/yr-icons/no_weather.svg"
+          />
+        </div>
+      </div>
+      <div
+        class="_container_26373e"
+      >
+        <div
+          class="_weatherContainer_26373e"
+        >
+          <p>
+            AFTEN
+          </p>
+          <img
+            alt="Afternoon Weather"
+            class="_weatherImage_26373e"
+            src="/project1/yr-icons/no_weather.svg"
+          />
+        </div>
+      </div>
+      <div
+        class="_container_26373e"
+      >
+        <div
+          class="_weatherContainer_26373e"
+        >
+          <p>
+            KVELD
+          </p>
+          <img
+            alt="Night Weather"
+            class="_weatherImage_26373e"
+            src="/project1/yr-icons/no_weather.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</DocumentFragment>
+`;

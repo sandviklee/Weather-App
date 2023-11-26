@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WindCard component > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_container_1d4056"
+  >
+    <p
+      class="_title_1d4056"
+    >
+      Vind
+    </p>
+    <div
+      class="_info_container_1d4056"
+    >
+      <p
+        class="_uv_index_1d4056"
+      >
+        5m/s 
+        <span
+          style="color: rgba(60, 103, 255, 0.6);"
+        >
+           (10)
+        </span>
+      </p>
+      <div
+        class="_compass_1d4056"
+      >
+        øst
+        <img
+          alt="arrow"
+          height="24px"
+          src="/project1/icons/compass.svg"
+          style="transform: rotate(90deg);"
+          width="24px"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
