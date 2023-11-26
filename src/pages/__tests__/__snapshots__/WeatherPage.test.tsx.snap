@@ -1,0 +1,255 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WeatherPage component > matches snapshot 1`] = `
+<DocumentFragment>
+  <main
+    class="_main_8ffdce"
+  >
+    <div
+      class="_container_8ffdce"
+    >
+      <div
+        class="_titleContent_8ffdce"
+      >
+        <div
+          class="_titlePlacement_8ffdce"
+        >
+          <a
+            href="/"
+          >
+            <svg
+              class="_arrow_8ffdce"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M872 474H286.9l350.2-304c5.6-4.9 2.2-14-5.2-14h-88.5c-3.9 0-7.6 1.4-10.5 3.9L155 487.8a31.96 31.96 0 0 0 0 48.3L535.1 866c1.5 1.3 3.3 2 5.2 2h91.5c7.4 0 10.8-9.2 5.2-14L286.9 550H872c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"
+              />
+            </svg>
+          </a>
+          <p
+            class="_title_8ffdce"
+          >
+            OSLO
+          </p>
+          <button
+            class="_heartButton_8ffdce"
+          >
+            <svg
+              class="_heart_8ffdce"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              style="color: gray;"
+              viewBox="0 0 1024 1024"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M923 283.6a260.04 260.04 0 0 0-56.9-82.8 264.4 264.4 0 0 0-84-55.5A265.34 265.34 0 0 0 679.7 125c-49.3 0-97.4 13.5-139.2 39-10 6.1-19.5 12.8-28.5 20.1-9-7.3-18.5-14-28.5-20.1-41.8-25.5-89.9-39-139.2-39-35.5 0-69.9 6.8-102.4 20.3-31.4 13-59.7 31.7-84 55.5a258.44 258.44 0 0 0-56.9 82.8c-13.9 32.3-21 66.6-21 101.9 0 33.3 6.8 68 20.3 103.3 11.3 29.5 27.5 60.1 48.2 91 32.8 48.9 77.9 99.9 133.9 151.6 92.8 85.7 184.7 144.9 188.6 147.3l23.7 15.2c10.5 6.7 24 6.7 34.5 0l23.7-15.2c3.9-2.5 95.7-61.6 188.6-147.3 56-51.7 101.1-102.7 133.9-151.6 20.7-30.9 37-61.5 48.2-91 13.5-35.3 20.3-70 20.3-103.3.1-35.3-7-69.6-20.9-101.9zM512 814.8S156 586.7 156 385.5C156 283.6 240.3 201 344.3 201c73.1 0 136.5 40.8 167.7 100.4C543.2 241.8 606.6 201 679.7 201c104 0 188.3 82.6 188.3 184.5 0 201.2-356 429.3-356 429.3z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="_contentBackground_8ffdce"
+      />
+      <div
+        class="_content_8ffdce"
+      >
+        <div
+          class="_date_8ffdce"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 1024 1024"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M112 880c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V460H112v420zm768-696H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v176h800V216c0-17.7-14.3-32-32-32z"
+            />
+          </svg>
+          <p>
+            Søndag 26. Nov
+          </p>
+        </div>
+        <main
+          class="_main_0824fb"
+        >
+          <div
+            class="_container_0824fb"
+          >
+            <svg
+              class="_icon_0824fb"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z"
+              />
+              <path
+                d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"
+              />
+            </svg>
+            <p
+              class="_information_0824fb"
+            >
+              0 C°
+            </p>
+          </div>
+          <div
+            class="_container_0824fb"
+          >
+            <svg
+              class="_icon_0824fb"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 0a.5.5 0 0 1 .5.5v.514C12.625 1.238 16 4.22 16 8c0 0 0 .5-.5.5-.149 0-.352-.145-.352-.145l-.004-.004-.025-.023a3.484 3.484 0 0 0-.555-.394A3.166 3.166 0 0 0 13 7.5c-.638 0-1.178.213-1.564.434a3.484 3.484 0 0 0-.555.394l-.025.023-.003.003s-.204.146-.353.146-.352-.145-.352-.145l-.004-.004-.025-.023a3.484 3.484 0 0 0-.555-.394 3.3 3.3 0 0 0-1.064-.39V13.5H8h.5v.039l-.005.083a2.958 2.958 0 0 1-.298 1.102 2.257 2.257 0 0 1-.763.88C7.06 15.851 6.587 16 6 16s-1.061-.148-1.434-.396a2.255 2.255 0 0 1-.763-.88 2.958 2.958 0 0 1-.302-1.185v-.025l-.001-.009v-.003s0-.002.5-.002h-.5V13a.5.5 0 0 1 1 0v.506l.003.044a1.958 1.958 0 0 0 .195.726c.095.191.23.367.423.495.19.127.466.229.879.229s.689-.102.879-.229c.193-.128.328-.304.424-.495a1.958 1.958 0 0 0 .197-.77V7.544a3.3 3.3 0 0 0-1.064.39 3.482 3.482 0 0 0-.58.417l-.004.004S5.65 8.5 5.5 8.5c-.149 0-.352-.145-.352-.145l-.004-.004a3.482 3.482 0 0 0-.58-.417A3.166 3.166 0 0 0 3 7.5c-.638 0-1.177.213-1.564.434a3.482 3.482 0 0 0-.58.417l-.004.004S.65 8.5.5 8.5C0 8.5 0 8 0 8c0-3.78 3.375-6.762 7.5-6.986V.5A.5.5 0 0 1 8 0zM6.577 2.123c-2.833.5-4.99 2.458-5.474 4.854A4.124 4.124 0 0 1 3 6.5c.806 0 1.48.25 1.962.511a9.706 9.706 0 0 1 .344-2.358c.242-.868.64-1.765 1.271-2.53zm-.615 4.93A4.16 4.16 0 0 1 8 6.5a4.16 4.16 0 0 1 2.038.553 8.688 8.688 0 0 0-.307-2.13C9.434 3.858 8.898 2.83 8 2.117c-.898.712-1.434 1.74-1.731 2.804a8.687 8.687 0 0 0-.307 2.131zm3.46-4.93c.631.765 1.03 1.662 1.272 2.53.233.833.328 1.66.344 2.358A4.14 4.14 0 0 1 13 6.5c.77 0 1.42.23 1.897.477-.484-2.396-2.641-4.355-5.474-4.854z"
+              />
+            </svg>
+            <p
+              class="_information_0824fb"
+            >
+              0 
+              <sub>
+                mm
+              </sub>
+            </p>
+          </div>
+          <div
+            class="_container_0824fb"
+          >
+            <svg
+              class="_icon_0824fb"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"
+              />
+            </svg>
+            <p
+              class="_information_0824fb"
+            >
+              0 
+              <sub>
+                m/s
+              </sub>
+            </p>
+          </div>
+        </main>
+        <main
+          class="_main_26373e"
+        >
+          <p
+            class="_extremalTemp_26373e"
+          >
+            Maks/Min Temperatur
+          </p>
+          <p
+            class="_temperatures_26373e"
+          >
+            0C° / 0C°
+          </p>
+          <div
+            class="_weathers_26373e"
+          >
+            <div
+              class="_container_26373e"
+            >
+              <div
+                class="_weatherContainer_26373e"
+              >
+                <p>
+                  NATT
+                </p>
+                <img
+                  alt="Morning Weather"
+                  class="_weatherImage_26373e"
+                  src="/project1/yr-icons/no_weather.svg"
+                />
+              </div>
+            </div>
+            <div
+              class="_container_26373e"
+            >
+              <div
+                class="_weatherContainer_26373e"
+              >
+                <p>
+                  MORGEN
+                </p>
+                <img
+                  alt="Noon Weather"
+                  class="_weatherImage_26373e"
+                  src="/project1/yr-icons/no_weather.svg"
+                />
+              </div>
+            </div>
+            <div
+              class="_container_26373e"
+            >
+              <div
+                class="_weatherContainer_26373e"
+              >
+                <p>
+                  AFTEN
+                </p>
+                <img
+                  alt="Afternoon Weather"
+                  class="_weatherImage_26373e"
+                  src="/project1/yr-icons/no_weather.svg"
+                />
+              </div>
+            </div>
+            <div
+              class="_container_26373e"
+            >
+              <div
+                class="_weatherContainer_26373e"
+              >
+                <p>
+                  KVELD
+                </p>
+                <img
+                  alt="Night Weather"
+                  class="_weatherImage_26373e"
+                  src="/project1/yr-icons/no_weather.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </main>
+</DocumentFragment>
+`;

@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UVCard component > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_container_a120ba"
+  >
+    <p
+      class="_title_a120ba"
+    >
+      UV Index
+    </p>
+    <div
+      class="_bar_container_a120ba"
+    >
+      <div
+        class="_bar_a120ba"
+      >
+        <div
+          style="background-color: rgb(255, 142, 60); height: 100%; width: 50%;"
+        />
+      </div>
+      <p
+        class="_uv_index_a120ba"
+      >
+        3
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

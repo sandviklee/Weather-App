@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HumidityCard component > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_container_7ae00b"
+  >
+    <p
+      class="_title_7ae00b"
+    >
+      Luftfuktighet
+    </p>
+    <div
+      class="_humidity_container_7ae00b"
+    >
+      <div
+        class="_status_container_7ae00b"
+      >
+        <div
+          class="_circle_7ae00b"
+          style="background-color: rgb(255, 250, 141);"
+        />
+        <p>
+          Lav
+        </p>
+      </div>
+      <p
+        class="_humidity_7ae00b"
+      >
+        20%
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

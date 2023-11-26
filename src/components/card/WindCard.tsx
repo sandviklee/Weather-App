@@ -21,7 +21,7 @@ const convertFromDegreesToDirectionString = (degrees: number) => {
   return directions[index];
 };
 
-const UVCard = ({ WindSpeed, WindGust, WindDirection }: CardProps) => {
+const WindCard = ({ WindSpeed, WindGust, WindDirection }: CardProps) => {
   return (
     <div className={styles.container}>
       <p className={styles.title}>Vind</p>
@@ -45,4 +45,4 @@ const UVCard = ({ WindSpeed, WindGust, WindDirection }: CardProps) => {
   );
 };
 
-export default UVCard;
+export default WindCard;

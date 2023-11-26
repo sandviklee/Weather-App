@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card component > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_card_3c4546"
+  >
+    <div
+      class="_container_3c4546"
+      style="background-color: white;"
+    >
+      <h1
+        class="_location_3c4546"
+      >
+        Test Location
+      </h1>
+      <img
+        alt="WeatherStatus"
+        draggable="false"
+        height="24"
+        src="/project1/yr-icons/clearsky_day.svg"
+        style="margin: 0px;"
+        width="24"
+      />
+      <div
+        class="_temperatures_3c4546"
+      >
+        <p
+          class="_temperature_3c4546"
+        >
+          20°
+        </p>
+        <p
+          class="_night_temperature_3c4546"
+        >
+          15°
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
