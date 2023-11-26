@@ -13,10 +13,12 @@
   - [Other](#other)
 
 ## Description
-For our first project we decided to make a wether app over locations in norway, utilizing yr's and kartverket's APIs. 
+For our first project we decided to make a wether app over locations in norway, utilising yr's and kartverket's APIs. The website is hosted on [it2810-h23.idi.ntnu.no/prosjekt-2/](http://it2810-37.idi.ntnu.no/prosjekt-2/) (ntnu vpn required to access).
 
 ### Features:
 - Browsing today's weather data for you location of choice
+- Searching for locations in norway
+- Filtering search results by fylke
 - Marking locations as favorite for easy access
 - Quick overview of the weather your favorite locations
 - A sleak and simple design
