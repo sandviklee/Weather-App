@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router } from 'react-router-dom';
 import {test , describe , expect, vi} from "vitest";
 import { userEvent } from '@testing-library/user-event';
-import { e } from 'vitest/dist/reporters-cb94c88b.js';
 
 // Create a client for React Query
 const queryClient = new QueryClient();
