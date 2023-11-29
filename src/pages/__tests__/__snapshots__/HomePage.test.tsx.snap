@@ -148,13 +148,13 @@ exports[`HomePage component > Search matches snapshot 1`] = `
         <span
           class="_day_6a3077"
         >
-          Søndag,
+          Onsdag,
         </span>
          
         <span
           class="_time_6a3077"
         >
-          15:53
+          13:09
         </span>
       </h3>
       <div
@@ -497,13 +497,13 @@ exports[`HomePage component > matches snapshot with favorites 1`] = `
         <span
           class="_day_6a3077"
         >
-          Søndag,
+          Onsdag,
         </span>
          
         <span
           class="_time_6a3077"
         >
-          15:53
+          13:09
         </span>
       </h3>
       <div
@@ -846,13 +846,13 @@ exports[`HomePage component > matches snapshot with no favorites 1`] = `
         <span
           class="_day_6a3077"
         >
-          Søndag,
+          Onsdag,
         </span>
          
         <span
           class="_time_6a3077"
         >
-          15:53
+          13:09
         </span>
       </h3>
       <div
