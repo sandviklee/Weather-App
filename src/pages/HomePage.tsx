@@ -149,7 +149,7 @@ const HomePage = () => {
     const [currentLocationIndex, setCurrentLocationIndex] = useState<number>(0);
 
     const [selectedCounty, setSelectedCounty] = useState<string | undefined>(
-        localStorage.getItem("prefferedCountySelection") as string
+        sessionStorage.getItem("prefferedCountySelection") as string
     );
 
     const locationQuery = useQuery({
@@ -206,13 +206,13 @@ const HomePage = () => {
                 }),
     });
 
-    /**
-     * Fetches data through lon and lat
-     * @param lon longditude
-     * @param lat latitude
-     * @returns data fetched by lon and lat
-     */
     const fetchWeatherByLonLat = async (lon: number, lat: number) => {
+        /**
+         * @summary Fetches data through lon and lat
+         * @param lon longditude
+         * @param lat latitude
+         * @returns data fetched by lon and lat
+         */
         const response = await fetch(
             `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${lat}&lon=${lon}`
         );
