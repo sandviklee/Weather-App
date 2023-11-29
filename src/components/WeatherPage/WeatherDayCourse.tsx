@@ -5,13 +5,13 @@ interface DayCourseProps {
     weatherCourse: Array<string>;
 }
 
-/**
- * This is the Course of day Weather Information component.
- * @summary Renders a component with information about the course of day
- * @param props (extrmalTemperatures, weatherCourse)
- * @returns Weather Course of Day JSX Element
- */
 const WeatherDayCourse = (props: DayCourseProps): JSX.Element => {
+    /**
+     * This is the Course of day Weather Information component.
+     * @summary Renders a component with information about the course of day
+     * @param props (extrmalTemperatures, weatherCourse)
+     * @returns Weather Course of Day JSX Element
+     */
     return (
         <main className={style.main}>
             <p className={style.extremalTemp}>Maks/Min Temperatur</p>
