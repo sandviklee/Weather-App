@@ -79,7 +79,7 @@ We decided to go with a simple design, with a focus on functionality. We wanted 
 
 ### Techicalities
 
--   Search filtering is not stored between reloads since we found it more intuitive. It is only stored if you click out of the search, and then want to search again.
+-   Search filtering is stored as session storage while favourites are stored as local storage.
 -   We only show today's weather data therefore if you are past certain times the earlier weather data will be blanked out as a limitation of the API.
 -   We don't have a way to "switch" between pages on the specific weather page. This is because we didn't find this intuitive for the user, since it would only work if the user had more than one favourite.
 
