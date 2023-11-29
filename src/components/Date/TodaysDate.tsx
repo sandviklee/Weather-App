@@ -1,3 +1,7 @@
+/**
+ * Date component used by the MET API.
+ * @returns date in a specific format
+ */
 const TodaysDate = () => {
     const date: Date = new Date();
     const curDayOfWeek: string = date.getDate().toString();

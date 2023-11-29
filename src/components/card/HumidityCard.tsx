@@ -4,6 +4,11 @@ interface CardProps {
   humidity: number;
 }
 
+/**
+ * Returns a status for given humidity.
+ * @param humidity 
+ * @returns status string
+ */
 const convertFromRelativeHumidityToStatusString = (humidity: number) => {
   if (humidity < 30) {
     return "Lav";
@@ -14,6 +19,11 @@ const convertFromRelativeHumidityToStatusString = (humidity: number) => {
   }
 };
 
+/**
+ * Returns a color for given humidity.
+ * @param humidity 
+ * @returns a hex color string
+ */
 const convertFromRelativeHumidityToColorStatus = (humidity: number) => {
   if (humidity < 30) {
     return "#FFFA8D";
