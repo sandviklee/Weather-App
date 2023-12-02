@@ -86,3 +86,11 @@ We decided to go with a simple design, with a focus on functionality. We wanted 
 ## Other
 
 We have modified the website based on feedback thoughout the project. This is our final version of the website.
+
+###### CHANGES SAT 2. DECEMBER AFTER DELIVERY
+
+We opened a branch for a bugfix on the TodaysDate.tsx component. This was because it broke the weather page part of the application.
+It was a quick fix, with just one line of code. The fix was for "curDayOfWeek" constant that wasn't formatted correctly. Instead of the formatting that YR MET API uses 01, 02, 03 for days, the part that should add a "0" before a singular day (number) had vanished and it therefore just used 1, 2, 3 as days. The application still works on days after singular ones. We had already fixed this earlier, but a git issue had removed this part of the code without us noticing. We are sorry for the inconviniences. 
+
+We got approval from the Course Instructor to fix this and update the VM.
+![Proof](proof.png)
